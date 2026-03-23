@@ -25,14 +25,26 @@ const contactDetails = [
 ];
 
 export const ContactSection = () => {
+  const [sending, setSending] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log("Form submitted:", data);
-    toast.success("Consulta enviada correctamente. Nos pondremos en contacto contigo pronto.");
-    reset();
+  const onSubmit = async (data: ContactFormData) => {
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: data,
+      });
+      if (error) throw error;
+      toast.success("Consulta enviada correctamente. Nos pondremos en contacto contigo pronto.");
+      reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Error al enviar la consulta. Inténtalo de nuevo.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass = "bg-mgsurface border border-[rgba(255,255,255,0.07)] text-foreground px-4 py-3.5 font-body text-[0.9rem] font-light outline-none focus:border-mgaccent transition-colors w-full";
