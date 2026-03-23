@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { revealVariants } from "@/lib/animations";
+import { Hexagon, Diamond, CircleDot, Wrench, FlaskConical, Layers } from "lucide-react";
 
 const techs = [
-  { num: "01", icon: "⬡", title: "Estampación\nen Frío", desc: "Especialistas en piezas especiales y de gran tamaño. Proceso integral desde el diseño hasta la pieza acabada, con control dimensional 100%.", featured: true },
-  { num: "02", icon: "◈", title: "Mecanizado\nCNC", desc: "Mecanizado auxiliar de alta precisión sobre piezas estampadas propias. Tornos CNC y centros de mecanizado para tolerancias ajustadas." },
-  { num: "03", icon: "⊕", title: "Roscado\nEspecial", desc: "Roscado de tornillos para automoción con licencia Mathread. Exclusivo para piezas de producción propia, garantizando consistencia total." },
-  { num: "04", icon: "🔧", title: "Taller\nMecánico", desc: "Taller propio para fabricación y mantenimiento de utillajes de estampación. Autonomía total en herramientas y matrices." },
-  { num: "05", icon: "🔬", title: "I+D\nInterno", desc: "Equipo de ingeniería dedicado al desarrollo de nuevos procesos, materiales y geometrías de pieza para los clientes más exigentes." },
-  { num: "06", icon: "✦", title: "Servicio\nIntegral", desc: "Desde el alambrón hasta la pieza acabada: estampación, mecanizado, roscado, control de calidad y logística en una sola empresa." },
+  { num: "01", icon: Hexagon, title: "Estampación\nen Frío", desc: "Especialistas en piezas especiales y de gran tamaño. Proceso integral desde el diseño hasta la pieza acabada, con control dimensional 100%.", featured: true },
+  { num: "02", icon: Diamond, title: "Mecanizado\nCNC", desc: "Mecanizado auxiliar de alta precisión sobre piezas estampadas propias. Tornos CNC y centros de mecanizado para tolerancias ajustadas." },
+  { num: "03", icon: CircleDot, title: "Roscado\nEspecial", desc: "Roscado de tornillos para automoción con licencia Mathread. Exclusivo para piezas de producción propia, garantizando consistencia total." },
+  { num: "04", icon: Wrench, title: "Taller\nMecánico", desc: "Taller propio para fabricación y mantenimiento de utillajes de estampación. Autonomía total en herramientas y matrices." },
+  { num: "05", icon: FlaskConical, title: "I+D\nInterno", desc: "Equipo de ingeniería dedicado al desarrollo de nuevos procesos, materiales y geometrías de pieza para los clientes más exigentes." },
+  { num: "06", icon: Layers, title: "Servicio\nIntegral", desc: "Desde el alambrón hasta la pieza acabada: estampación, mecanizado, roscado, control de calidad y logística en una sola empresa." },
 ];
 
 export const TechSection = () => {
@@ -32,8 +33,8 @@ export const TechSection = () => {
             className={`p-10 lg:p-12 relative overflow-hidden border border-[rgba(255,255,255,0.07)] cursor-pointer transition-all duration-500 group ${tech.featured ? "bg-mgaccent hover:bg-mgaccent2" : "bg-mgbg3 hover:bg-mgsurface"}`}>
             {!tech.featured && <div className="absolute inset-0 bg-gradient-to-br from-[rgba(232,98,10,0.08)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />}
             <span className={`font-mono text-[0.68rem] tracking-[0.2em] block mb-8 ${tech.featured ? "text-[rgba(255,255,255,0.8)]" : "text-mgaccent"}`}>{tech.num}</span>
-            <div className={`w-14 h-14 border flex items-center justify-center mb-7 text-xl transition-all duration-300 ${tech.featured ? "border-[rgba(255,255,255,0.3)] group-hover:bg-[rgba(255,255,255,0.15)]" : "border-[rgba(255,255,255,0.07)] group-hover:border-mgaccent group-hover:bg-[rgba(232,98,10,0.1)]"}`}>
-              {tech.icon}
+            <div className={`w-14 h-14 border flex items-center justify-center mb-7 transition-all duration-300 ${tech.featured ? "border-[rgba(255,255,255,0.3)] group-hover:bg-[rgba(255,255,255,0.15)]" : "border-[rgba(255,255,255,0.07)] group-hover:border-mgaccent group-hover:bg-[rgba(232,98,10,0.1)]"}`}>
+              <tech.icon className={`w-6 h-6 ${tech.featured ? "text-foreground" : "text-mgaccent"}`} strokeWidth={1.5} />
             </div>
             <h3 className="font-head font-extrabold text-[1.7rem] uppercase tracking-[0.04em] leading-tight mb-4 whitespace-pre-line text-foreground">{tech.title}</h3>
             <p className={`text-[0.88rem] leading-relaxed font-light ${tech.featured ? "text-foreground" : "text-mgsteel"}`}>{tech.desc}</p>
