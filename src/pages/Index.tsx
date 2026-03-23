@@ -14,7 +14,7 @@ import { ContactSection } from "@/components/ContactSection";
 const Index = () => {
   return (
     <>
-      <CustomCursor />
+      
       <Navbar />
       <HeroSection />
       <MarqueeBand />
