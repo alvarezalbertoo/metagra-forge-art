@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { revealVariants } from "@/lib/animations";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
+import { MapPin, Phone, Globe } from "lucide-react";
 
 const contactSchema = z.object({
   nombre: z.string().trim().min(1, "El nombre es obligatorio").max(100),
@@ -19,9 +20,9 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const contactDetails = [
-  { icon: "📍", label: "Dirección", value: "Amilaga, 22 — 20570 Bergara, Gipuzkoa" },
-  { icon: "📞", label: "Teléfono", value: "+34 943 761 348", href: "tel:+34943761348" },
-  { icon: "🌐", label: "Presencia Internacional", value: "España · México" },
+  { icon: MapPin, label: "Dirección", value: "Amilaga, 22 — 20570 Bergara, Gipuzkoa" },
+  { icon: Phone, label: "Teléfono", value: "+34 943 761 348", href: "tel:+34943761348" },
+  { icon: Globe, label: "Presencia Internacional", value: "España · México" },
 ];
 
 export const ContactSection = () => {
@@ -60,7 +61,9 @@ export const ContactSection = () => {
           <div className="mt-12 space-y-0">
             {contactDetails.map((detail) => (
               <div key={detail.label} className="flex gap-5 py-6 border-t border-[rgba(255,255,255,0.07)] last:border-b">
-                <div className="w-10 h-10 shrink-0 border border-[rgba(255,255,255,0.07)] flex items-center justify-center text-sm text-mgaccent">{detail.icon}</div>
+                <div className="w-10 h-10 shrink-0 border border-[rgba(255,255,255,0.07)] flex items-center justify-center">
+                  <detail.icon className="w-4 h-4 text-mgaccent" strokeWidth={1.5} />
+                </div>
                 <div>
                   <span className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-mgmuted block mb-1">{detail.label}</span>
                   {detail.href ? (

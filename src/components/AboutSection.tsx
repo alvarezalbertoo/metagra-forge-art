@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { revealVariants } from "@/lib/animations";
+import { Cog, Leaf, Globe, Users } from "lucide-react";
 
 const cards = [
-  { icon: "⚙️", title: "Tecnología", desc: "Maquinaria de última generación para estampación de piezas complejas y de gran tamaño." },
-  { icon: "🌱", title: "Sostenibilidad", desc: "Comprometidos con la reducción de huella de carbono y procesos de producción eficientes." },
-  { icon: "🌐", title: "Global", desc: "Presencia en Europa y México, con cadena de suministro integrada y servicio local." },
-  { icon: "👥", title: "Personas", desc: "Equipo humano altamente cualificado, formado continuamente en nuevas tecnologías." },
+  { icon: Cog, title: "Tecnología", desc: "Maquinaria de última generación para estampación de piezas complejas y de gran tamaño." },
+  { icon: Leaf, title: "Sostenibilidad", desc: "Comprometidos con la reducción de huella de carbono y procesos de producción eficientes." },
+  { icon: Globe, title: "Global", desc: "Presencia en Europa y México, con cadena de suministro integrada y servicio local." },
+  { icon: Users, title: "Personas", desc: "Equipo humano altamente cualificado, formado continuamente en nuevas tecnologías." },
 ];
 
 export const AboutSection = () => {
@@ -30,7 +31,9 @@ export const AboutSection = () => {
           {cards.map((card, i) => (
             <motion.div key={card.title} custom={i + 1} variants={revealVariants} className="bg-mgsurface p-7 border border-[rgba(255,255,255,0.07)] relative overflow-hidden transition-all duration-300 hover:border-[rgba(232,98,10,0.2)] hover:-translate-y-1 group">
               <div className="absolute top-0 left-0 w-[3px] h-0 bg-mgaccent transition-all duration-500 group-hover:h-full" />
-              <div className="text-[1.8rem] mb-3.5">{card.icon}</div>
+              <div className="w-10 h-10 border border-[rgba(255,255,255,0.1)] flex items-center justify-center mb-3.5 group-hover:border-mgaccent group-hover:bg-[rgba(232,98,10,0.08)] transition-all duration-300">
+                <card.icon className="w-5 h-5 text-mgaccent" strokeWidth={1.5} />
+              </div>
               <h4 className="font-head font-bold text-[1.1rem] tracking-[0.05em] uppercase text-foreground mb-2">{card.title}</h4>
               <p className="text-[0.82rem] text-mgmuted leading-relaxed">{card.desc}</p>
             </motion.div>
