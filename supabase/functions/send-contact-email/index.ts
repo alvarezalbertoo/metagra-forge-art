@@ -37,11 +37,14 @@ serve(async (req) => {
       </table>
     `;
 
+    const resendKey = Deno.env.get("RESEND_API_KEY");
+    console.log("RESEND_API_KEY present:", !!resendKey);
+
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${Deno.env.get("RESEND_API_KEY")}`,
+        Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
         from: "Metagra Web <onboarding@resend.dev>",
@@ -52,10 +55,11 @@ serve(async (req) => {
       }),
     });
 
+    const responseText = await res.text();
+    console.log("Resend response:", res.status, responseText);
+
     if (!res.ok) {
-      const err = await res.text();
-      console.error("Resend error:", err);
-      return new Response(JSON.stringify({ error: "Error al enviar email" }), {
+      return new Response(JSON.stringify({ error: "Error al enviar email", details: responseText }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
