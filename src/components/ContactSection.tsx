@@ -4,6 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { revealVariants } from "@/lib/animations";
+import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 
 const contactSchema = z.object({
   nombre: z.string().trim().min(1, "El nombre es obligatorio").max(100),
@@ -23,14 +25,26 @@ const contactDetails = [
 ];
 
 export const ContactSection = () => {
+  const [sending, setSending] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log("Form submitted:", data);
-    toast.success("Consulta enviada correctamente. Nos pondremos en contacto contigo pronto.");
-    reset();
+  const onSubmit = async (data: ContactFormData) => {
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: data,
+      });
+      if (error) throw error;
+      toast.success("Consulta enviada correctamente. Nos pondremos en contacto contigo pronto.");
+      reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Error al enviar la consulta. Inténtalo de nuevo.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass = "bg-mgsurface border border-[rgba(255,255,255,0.07)] text-foreground px-4 py-3.5 font-body text-[0.9rem] font-light outline-none focus:border-mgaccent transition-colors w-full";
@@ -100,9 +114,9 @@ export const ContactSection = () => {
               <textarea {...register("mensaje")} placeholder="Describe tu necesidad o proyecto..." className={inputClass + " resize-y min-h-[130px]"} />
               {errors.mensaje && <span className="text-[0.7rem] text-destructive">{errors.mensaje.message}</span>}
             </div>
-            <button type="submit" className="self-start relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-12 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group">
+            <button type="submit" disabled={sending} className="self-start relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-12 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group disabled:opacity-60 disabled:cursor-not-allowed">
               <span className="absolute inset-0 bg-mgaccent2 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-              <span className="relative z-[1]">Enviar Consulta →</span>
+              <span className="relative z-[1]">{sending ? "Enviando..." : "Enviar Consulta →"}</span>
             </button>
           </form>
         </motion.div>
