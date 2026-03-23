@@ -114,9 +114,9 @@ export const ContactSection = () => {
               <textarea {...register("mensaje")} placeholder="Describe tu necesidad o proyecto..." className={inputClass + " resize-y min-h-[130px]"} />
               {errors.mensaje && <span className="text-[0.7rem] text-destructive">{errors.mensaje.message}</span>}
             </div>
-            <button type="submit" className="self-start relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-12 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group">
+            <button type="submit" disabled={sending} className="self-start relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-12 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group disabled:opacity-60 disabled:cursor-not-allowed">
               <span className="absolute inset-0 bg-mgaccent2 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-              <span className="relative z-[1]">Enviar Consulta →</span>
+              <span className="relative z-[1]">{sending ? "Enviando..." : "Enviar Consulta →"}</span>
             </button>
           </form>
         </motion.div>
