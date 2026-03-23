@@ -1,13 +1,11 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { CustomCursor } from "@/components/CustomCursor";
 import { AboutSection } from "@/components/AboutSection";
 import { motion } from "framer-motion";
 import { SMOOTH_EASE } from "@/lib/animations";
 
 const Grupo = () => (
   <>
-    <CustomCursor />
     <Navbar />
     <div className="pt-[72px]">
       <section className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
