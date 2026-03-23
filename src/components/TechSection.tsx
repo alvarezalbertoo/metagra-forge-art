@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
-const revealVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: (i = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
+import { revealVariants } from "@/lib/animations";
 
 const techs = [
   { num: "01", icon: "⬡", title: "Estampación\nen Frío", desc: "Especialistas en piezas especiales y de gran tamaño. Proceso integral desde el diseño hasta la pieza acabada, con control dimensional 100%.", featured: true },
@@ -21,76 +14,30 @@ const techs = [
 export const TechSection = () => {
   return (
     <section className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
-      <motion.div
-        className="flex flex-col md:flex-row justify-between items-start md:items-end mb-[72px] gap-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.12 }}
-        variants={revealVariants}
-      >
+      <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-[72px] gap-6" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={revealVariants}>
         <div>
           <div className="section-label">Capacidades</div>
-          <h2
-            className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground"
-            style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}
-          >
+          <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
             Nuestras<br /><span className="text-outline">Tecnologías</span>
           </h2>
         </div>
-        <Link
-          to="/contacto"
-          className="font-head font-semibold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 border border-[rgba(255,255,255,0.07)] text-mgsteel hover:border-foreground hover:text-foreground transition-all"
-        >
+        <Link to="/contacto" className="font-head font-semibold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 border border-[rgba(255,255,255,0.07)] text-mgsteel hover:border-foreground hover:text-foreground transition-all">
           Ver catálogo completo →
         </Link>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px]">
         {techs.map((tech, i) => (
-          <motion.div
-            key={tech.num}
-            custom={i}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.12 }}
-            variants={revealVariants}
-            className={`p-10 lg:p-12 relative overflow-hidden border border-[rgba(255,255,255,0.07)] cursor-pointer transition-all duration-400 group ${
-              tech.featured
-                ? "bg-mgaccent hover:bg-mgaccent2"
-                : "bg-mgbg3 hover:bg-mgsurface"
-            }`}
-          >
-            {!tech.featured && (
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(232,98,10,0.08)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-            )}
-            <span className={`font-mono text-[0.68rem] tracking-[0.2em] block mb-8 ${tech.featured ? "text-[rgba(255,255,255,0.8)]" : "text-mgaccent"}`}>
-              {tech.num}
-            </span>
-            <div
-              className={`w-14 h-14 border flex items-center justify-center mb-7 text-xl transition-all duration-300 ${
-                tech.featured
-                  ? "border-[rgba(255,255,255,0.3)] group-hover:bg-[rgba(255,255,255,0.15)]"
-                  : "border-[rgba(255,255,255,0.07)] group-hover:border-mgaccent group-hover:bg-[rgba(232,98,10,0.1)]"
-              }`}
-            >
+          <motion.div key={tech.num} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={revealVariants}
+            className={`p-10 lg:p-12 relative overflow-hidden border border-[rgba(255,255,255,0.07)] cursor-pointer transition-all duration-500 group ${tech.featured ? "bg-mgaccent hover:bg-mgaccent2" : "bg-mgbg3 hover:bg-mgsurface"}`}>
+            {!tech.featured && <div className="absolute inset-0 bg-gradient-to-br from-[rgba(232,98,10,0.08)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />}
+            <span className={`font-mono text-[0.68rem] tracking-[0.2em] block mb-8 ${tech.featured ? "text-[rgba(255,255,255,0.8)]" : "text-mgaccent"}`}>{tech.num}</span>
+            <div className={`w-14 h-14 border flex items-center justify-center mb-7 text-xl transition-all duration-300 ${tech.featured ? "border-[rgba(255,255,255,0.3)] group-hover:bg-[rgba(255,255,255,0.15)]" : "border-[rgba(255,255,255,0.07)] group-hover:border-mgaccent group-hover:bg-[rgba(232,98,10,0.1)]"}`}>
               {tech.icon}
             </div>
-            <h3
-              className={`font-head font-extrabold text-[1.7rem] uppercase tracking-[0.04em] leading-tight mb-4 whitespace-pre-line ${
-                tech.featured ? "text-foreground" : "text-foreground"
-              }`}
-            >
-              {tech.title}
-            </h3>
-            <p className={`text-[0.88rem] leading-relaxed font-light ${tech.featured ? "text-foreground" : "text-mgsteel"}`}>
-              {tech.desc}
-            </p>
-            <Link
-              to="/contacto"
-              className={`mt-8 inline-flex items-center gap-2.5 font-head font-bold text-[0.78rem] tracking-[0.18em] uppercase transition-all group-hover:gap-4 ${
-                tech.featured ? "text-foreground" : "text-mgaccent"
-              }`}
-            >
+            <h3 className="font-head font-extrabold text-[1.7rem] uppercase tracking-[0.04em] leading-tight mb-4 whitespace-pre-line text-foreground">{tech.title}</h3>
+            <p className={`text-[0.88rem] leading-relaxed font-light ${tech.featured ? "text-foreground" : "text-mgsteel"}`}>{tech.desc}</p>
+            <Link to="/contacto" className={`mt-8 inline-flex items-center gap-2.5 font-head font-bold text-[0.78rem] tracking-[0.18em] uppercase transition-all group-hover:gap-4 ${tech.featured ? "text-foreground" : "text-mgaccent"}`}>
               Más información <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </motion.div>

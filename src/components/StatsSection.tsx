@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { SMOOTH_EASE } from "@/lib/animations";
 
 const stats = [
   { prefix: "+", value: 50, suffix: "", label: "Años de experiencia" },
@@ -16,7 +17,6 @@ function useCountUp(target: number, duration = 1600) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !started.current) {
@@ -54,25 +54,17 @@ export const StatsSection = () => {
 
 function StatBox({ stat, delay }: { stat: typeof stats[0]; delay: number }) {
   const { count, ref } = useCountUp(stat.value);
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: delay * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="bg-mgbg p-8 lg:p-12 relative overflow-hidden group hover:bg-mgbg3 transition-colors"
-    >
+    <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: delay * 0.12, ease: SMOOTH_EASE }}
+      className="bg-mgbg p-8 lg:p-12 relative overflow-hidden group hover:bg-mgbg3 transition-colors">
       <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-mgaccent transition-all duration-500 group-hover:w-full" />
       <div className="font-head font-black text-foreground leading-none" style={{ fontSize: "clamp(2.4rem, 4vw, 3.8rem)" }}>
         {stat.prefix && <sup className="text-mgaccent text-[1.8rem]">{stat.prefix}</sup>}
         {count}
         {stat.suffix && <sup className="text-mgaccent text-[1.8rem]">{stat.suffix}</sup>}
       </div>
-      <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-mgmuted mt-3">
-        {stat.label}
-      </div>
+      <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-mgmuted mt-3">{stat.label}</div>
     </motion.div>
   );
 }
