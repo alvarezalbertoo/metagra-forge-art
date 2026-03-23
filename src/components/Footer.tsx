@@ -27,10 +27,7 @@ export const Footer = () => {
     <footer className="bg-mgbg2 border-t border-[rgba(255,255,255,0.07)] px-6 lg:px-[60px] pt-[60px] pb-8 relative z-[2]">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-[60px] pb-12 border-b border-[rgba(255,255,255,0.07)]">
         <div>
-          <div className="font-head font-extrabold text-xl tracking-[0.12em] uppercase">
-            <span className="text-foreground">META</span>
-            <span className="text-mgaccent">GRA</span>
-          </div>
+          <img src={metagraLogo} alt="Metagra Group" className="h-10" />
           <p className="mt-4 text-[0.85rem] text-mgmuted leading-relaxed max-w-[240px]">
             Estampación en frío de precisión para la industria del automóvil. Bergara, Gipuzkoa.
           </p>

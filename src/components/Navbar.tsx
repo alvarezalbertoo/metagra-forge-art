@@ -38,9 +38,8 @@ export const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        <Link to="/" className="font-head font-extrabold text-2xl tracking-[0.12em] uppercase">
-          <span className="text-foreground">META</span>
-          <span className="text-mgaccent">GRA</span>
+        <Link to="/">
+          <img src={metagraLogo} alt="Metagra Group" className="h-10" />
         </Link>
 
         {/* Desktop links */}
