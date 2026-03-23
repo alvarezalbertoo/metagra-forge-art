@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import metagraLogo from "@/assets/metagra-logo.png";
 
 const navLinks = [
   { label: "Grupo", href: "/grupo" },
@@ -37,9 +38,8 @@ export const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        <Link to="/" className="font-head font-extrabold text-2xl tracking-[0.12em] uppercase">
-          <span className="text-foreground">META</span>
-          <span className="text-mgaccent">GRA</span>
+        <Link to="/">
+          <img src={metagraLogo} alt="Metagra Group" className="h-10" />
         </Link>
 
         {/* Desktop links */}
