@@ -4,8 +4,8 @@ import { SMOOTH_EASE } from "@/lib/animations";
 
 const stats = [
   { prefix: "+", value: 50, suffix: "", label: "Años de experiencia" },
-  { prefix: "", value: 2, suffix: "", label: "Plantas productivas" },
-  { prefix: "", value: 300, suffix: "+", label: "Referencias de pieza activas" },
+  { prefix: "", value: 2, suffix: "", label: "Plantas productivas (ES + MX)" },
+  { prefix: "", value: 300, suffix: "+", label: "Referencias activas" },
   { prefix: "", value: 100, suffix: "%", label: "Control dimensional" },
 ];
 

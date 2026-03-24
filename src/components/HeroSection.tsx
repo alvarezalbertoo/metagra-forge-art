@@ -45,9 +45,9 @@ export const HeroSection = () => {
         >
           Acero<br />en <span className="text-outline-accent">Movimiento</span>
         </motion.h1>
-        <motion.p variants={fadeUp} className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[480px]">
-          Estampación en frío de alta precisión para el sector de la automoción.
-          Más de <strong className="text-foreground font-medium">50 años</strong> forjando piezas que mueven el mundo.
+        <motion.p variants={fadeUp} className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[520px]">
+          Estampación en frío de alambrón de acero, mecanizado y roscado de piezas metálicas para el sector de la automoción.
+          Más de <strong className="text-foreground font-medium">cinco décadas</strong> a la vanguardia tecnológica en la producción de piezas para <strong className="text-foreground font-medium">dirección, frenos, transmisión y motor</strong>.
         </motion.p>
         <motion.div variants={fadeUp} className="mt-11 flex flex-wrap gap-4 items-center">
           <Link to="/tecnologias" className="relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group">
@@ -69,7 +69,7 @@ export const HeroSection = () => {
         {[
           { num: "+50", label: "Años de experiencia" },
           { num: "2", label: "Plantas (ES + MX)" },
-          { num: "ISO·TS", label: "Certificación calidad" },
+          { num: "IATF", label: "16949 Certificación" },
         ].map((s) => (
           <div key={s.label} className="text-right">
             <div className="font-head text-[2.6rem] font-extrabold text-foreground leading-none">
