@@ -4,12 +4,12 @@ import { revealVariants } from "@/lib/animations";
 import { Hexagon, Diamond, CircleDot, Wrench, FlaskConical, Layers } from "lucide-react";
 
 const techs = [
-  { num: "01", icon: Hexagon, title: "Estampación\nen Frío", desc: "Especialistas en piezas especiales y de gran tamaño. Proceso integral desde el diseño hasta la pieza acabada, con control dimensional 100%.", featured: true },
-  { num: "02", icon: Diamond, title: "Mecanizado\nCNC", desc: "Mecanizado auxiliar de alta precisión sobre piezas estampadas propias. Tornos CNC y centros de mecanizado para tolerancias ajustadas." },
-  { num: "03", icon: CircleDot, title: "Roscado\nEspecial", desc: "Roscado de tornillos para automoción con licencia Mathread. Exclusivo para piezas de producción propia, garantizando consistencia total." },
-  { num: "04", icon: Wrench, title: "Taller\nMecánico", desc: "Taller propio para fabricación y mantenimiento de utillajes de estampación. Autonomía total en herramientas y matrices." },
-  { num: "05", icon: FlaskConical, title: "I+D\nInterno", desc: "Equipo de ingeniería dedicado al desarrollo de nuevos procesos, materiales y geometrías de pieza para los clientes más exigentes." },
-  { num: "06", icon: Layers, title: "Servicio\nIntegral", desc: "Desde el alambrón hasta la pieza acabada: estampación, mecanizado, roscado, control de calidad y logística en una sola empresa." },
+  { num: "01", icon: Hexagon, title: "Estampación\nen Frío", desc: "Soluciones de estampación en frío de piezas metálicas para automoción. Especialistas en piezas especiales, grandes y esbeltas, con codiseño y estudio de factibilidad de cada pieza.", featured: true },
+  { num: "02", icon: Diamond, title: "Mecanizado\nCNC", desc: "Mecanización de piezas propias de acero estampado como operación auxiliar clave. Solución integral de estampación y mecanizado en nuestras instalaciones." },
+  { num: "03", icon: CircleDot, title: "Roscado\nEspecial", desc: "Roscado de piezas estampadas en frío y producción de tornillos especiales para automoción. Disponemos de licencia Mathread. Solo roscado de piezas de producción propia." },
+  { num: "04", icon: Wrench, title: "Utillaje\nPropio", desc: "Desarrollo y fabricación de utillaje propio para nuestros proyectos. Autonomía total en herramientas y matrices que nos convierte en referente del sector." },
+  { num: "05", icon: FlaskConical, title: "Tratamientos\ny Acabados", desc: "Gestionamos los tratamientos necesarios para ofrecerte una pieza totalmente terminada. Control integral del proceso desde el alambrón hasta el producto final." },
+  { num: "06", icon: Layers, title: "Servicio\nIntegral", desc: "Desde el alambrón hasta la pieza acabada: estampación, mecanizado, roscado, tratamientos, control de calidad y logística en una sola empresa." },
 ];
 
 export const TechSection = () => {
@@ -23,7 +23,7 @@ export const TechSection = () => {
           </h2>
         </div>
         <Link to="/contacto" className="font-head font-semibold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 border border-[rgba(255,255,255,0.07)] text-mgsteel hover:border-foreground hover:text-foreground transition-all">
-          Ver catálogo completo →
+          Solicitar información →
         </Link>
       </motion.div>
 

@@ -3,10 +3,10 @@ import { revealVariants } from "@/lib/animations";
 import { Cog, Leaf, Globe, Users } from "lucide-react";
 
 const cards = [
-  { icon: Cog, title: "Tecnología", desc: "Maquinaria de última generación para estampación de piezas complejas y de gran tamaño." },
-  { icon: Leaf, title: "Sostenibilidad", desc: "Comprometidos con la reducción de huella de carbono y procesos de producción eficientes." },
-  { icon: Globe, title: "Global", desc: "Presencia en Europa y México, con cadena de suministro integrada y servicio local." },
-  { icon: Users, title: "Personas", desc: "Equipo humano altamente cualificado, formado continuamente en nuevas tecnologías." },
+  { icon: Cog, title: "Tecnología", desc: "Maquinaria de última generación y desarrollo de utillaje propio para estampación de piezas complejas y de gran tamaño." },
+  { icon: Leaf, title: "Sostenibilidad", desc: "Comprometidos con la reducción de huella de carbono, certificación ISO 14001 y procesos de producción eficientes." },
+  { icon: Globe, title: "Global", desc: "Presencia en España y México, con cadena de suministro integrada y servicio local para fabricantes europeos y globales." },
+  { icon: Users, title: "Personas", desc: "Gran equipo de profesionales altamente cualificado, formado continuamente en nuevas tecnologías y con décadas de experiencia acumulada." },
 ];
 
 export const AboutSection = () => {
@@ -20,10 +20,11 @@ export const AboutSection = () => {
           </h2>
           <div className="w-10 h-[3px] bg-mgaccent my-7" />
           <p className="text-[1.05rem] leading-[1.85] text-mgsteel font-light">
-            Metagra Group es un referente en la <strong className="text-foreground font-medium">estampación en frío de alambrón de acero</strong>.
-            Desde nuestra planta en Bergara, Gipuzkoa, producimos piezas especiales y de gran tamaño para los principales fabricantes de <strong className="text-foreground font-medium">automoción europeos y globales</strong>.
+            Metagra Group es un referente en la <strong className="text-foreground font-medium">estampación en frío de alambrón de acero</strong>, así como en labores de <strong className="text-foreground font-medium">roscados y mecanizados de piezas metálicas</strong> para el sector de la automoción.
             <br /><br />
-            Con más de cinco décadas de experiencia acumulada, combinamos el conocimiento del tejido industrial vasco con tecnología de vanguardia y un profundo compromiso con la calidad, el medioambiente y las personas.
+            Desde nuestra planta en Bergara, Gipuzkoa, y con presencia en México, servimos a los principales fabricantes de automoción europeos y globales. Más de cinco décadas de trabajo, un gran equipo de profesionales y un exigente impulso en innovación nos permiten ofrecer medios a la <strong className="text-foreground font-medium">vanguardia tecnológica</strong>.
+            <br /><br />
+            Reconocidos como <strong className="text-foreground font-medium">mejor proveedor mundial de PSA</strong>, <strong className="text-foreground font-medium">preferred supplier de Bosch</strong> y ganadores del <strong className="text-foreground font-medium">premio a la calidad de Renault</strong>.
           </p>
         </motion.div>
 

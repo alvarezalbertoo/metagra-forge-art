@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { revealVariants } from "@/lib/animations";
 
 const steps = [
-  { num: "01", title: "Ingeniería & Diseño", desc: "Estudio de factibilidad, DFM y desarrollo conjunto del utillaje con el cliente." },
-  { num: "02", title: "Preparación de Material", desc: "Selección y trefilado del alambrón de acero según especificaciones de la pieza." },
-  { num: "03", title: "Estampación en Frío", desc: "Conformado progresivo en prensas de alta tonelada para piezas de precisión." },
-  { num: "04", title: "Mecanizado & Roscado", desc: "Operaciones auxiliares de alta precisión para geometrías finales complejas." },
-  { num: "05", title: "Control de Calidad", desc: "Inspección 100% dimensional, laboratorio interno y trazabilidad completa." },
+  { num: "01", title: "Codiseño & Estudio", desc: "Estudio de factibilidad y codiseño de cada pieza junto al cliente. Desarrollo del utillaje propio para el proyecto." },
+  { num: "02", title: "Preparación de Material", desc: "Selección y trefilado del alambrón de acero según las especificaciones técnicas de la pieza a producir." },
+  { num: "03", title: "Estampación en Frío", desc: "Conformado progresivo en prensas de alta tonelada. Especialistas en piezas especiales, grandes y esbeltas." },
+  { num: "04", title: "Mecanizado & Roscado", desc: "Mecanización de piezas propias y roscado con licencia Mathread. Operaciones auxiliares integradas en nuestras instalaciones." },
+  { num: "05", title: "Tratamientos & Acabados", desc: "Gestión de los tratamientos térmicos y superficiales necesarios para entregar una pieza totalmente terminada." },
+  { num: "06", title: "Control de Calidad", desc: "Inspección 100% dimensional, laboratorio interno, trazabilidad completa y los más exigentes controles bajo certificación IATF 16949." },
 ];
 
 export const ProcessSection = () => {

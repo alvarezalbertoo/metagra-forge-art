@@ -9,16 +9,15 @@ const footerLinks = {
     { label: "Medio ambiente", href: "/grupo" },
   ],
   tecnologias: [
-    { label: "Estampación en frío", href: "/tecnologias/estampacion-en-frio" },
-    { label: "Mecanizado", href: "/tecnologias/mecanizado" },
-    { label: "Roscado", href: "/tecnologias/roscado" },
-    { label: "I+D", href: "/tecnologias" },
+    { label: "Estampación en frío", href: "/tecnologias" },
+    { label: "Mecanizado", href: "/tecnologias" },
+    { label: "Roscado", href: "/tecnologias" },
+    { label: "Utillaje propio", href: "/tecnologias" },
   ],
   contacto: [
     { label: "Solicitar info", href: "/contacto" },
-    { label: "Descargas", href: "/descargas" },
-    { label: "Certificados", href: "/calidad" },
-    { label: "Aviso legal", href: "/aviso-legal" },
+    { label: "Calidad", href: "/calidad" },
+    { label: "Sectores", href: "/sectores" },
   ],
 };
 
@@ -29,7 +28,7 @@ export const Footer = () => {
         <div>
           <img src={metagraLogo} alt="Metagra Group" className="h-10" />
           <p className="mt-4 text-[0.85rem] text-mgmuted leading-relaxed max-w-[240px]">
-            Estampación en frío de precisión para la industria del automóvil. Bergara, Gipuzkoa.
+            Estampación en frío de alambrón de acero, mecanizado y roscado de piezas metálicas para automoción. Bergara, Gipuzkoa.
           </p>
         </div>
 
@@ -56,7 +55,7 @@ export const Footer = () => {
 
       <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="font-mono text-[0.62rem] tracking-[0.1em] text-mgmuted">
-          © 2025 Metagra Group · Todos los derechos reservados
+          © {new Date().getFullYear()} Metagra Group · Todos los derechos reservados
         </p>
         <div className="flex gap-3">
           {["ES", "EN", "FR", "DE"].map((lang) => (
