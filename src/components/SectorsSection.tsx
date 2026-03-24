@@ -1,41 +1,48 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
 
-const sectors = [
-  { tag: "Principal", title: "Automoción", desc: "Piezas especiales para dirección, frenos, transmisión y motor para los principales fabricantes europeos.", pattern: "repeating-linear-gradient(45deg, #e8620a 0, #e8620a 1px, transparent 0, transparent 50%)", patternSize: "20px 20px" },
-  { tag: "Transporte", title: "Ferroviario", desc: "Componentes de alta resistencia para sistemas de transporte ferroviario y vehículos pesados.", pattern: "radial-gradient(circle at 50% 50%, rgba(232,98,10,0.3) 0%, transparent 60%)" },
-  { tag: "Alta Exigencia", title: "Industrial", desc: "Piezas estampadas para maquinaria industrial, equipos de construcción y aplicaciones de alta exigencia.", pattern: "repeating-conic-gradient(rgba(232,98,10,0.08) 0deg, transparent 10deg, transparent 30deg)" },
+const patterns = [
+  { pattern: "repeating-linear-gradient(45deg, #e8620a 0, #e8620a 1px, transparent 0, transparent 50%)", patternSize: "20px 20px" },
+  { pattern: "radial-gradient(circle at 50% 50%, rgba(232,98,10,0.3) 0%, transparent 60%)" },
+  { pattern: "repeating-conic-gradient(rgba(232,98,10,0.08) 0deg, transparent 10deg, transparent 30deg)" },
 ];
 
 export const SectorsSection = () => {
+  const { t } = useTranslation();
+
+  const sectors = [
+    { tag: t("sectors.s1Tag"), title: t("sectors.s1Title"), desc: t("sectors.s1Desc"), ...patterns[0] },
+    { tag: t("sectors.s2Tag"), title: t("sectors.s2Title"), desc: t("sectors.s2Desc"), ...patterns[1] },
+    { tag: t("sectors.s3Tag"), title: t("sectors.s3Title"), desc: t("sectors.s3Desc"), ...patterns[2] },
+  ];
+
   return (
     <section className="bg-mgbg2 px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-[72px]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
-          <div className="section-label">Mercados</div>
+          <div className="section-label">{t("sectors.label")}</div>
           <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
-            Sectores<br /><span className="text-outline">Clave</span>
+            {t("sectors.title1")}<br /><span className="text-outline">{t("sectors.title2")}</span>
           </h2>
         </motion.div>
-        <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1} variants={revealVariants} className="text-mgsteel text-[0.95rem] leading-relaxed font-light">
-          Nuestras piezas se integran en los sistemas más críticos de los principales fabricantes de automóviles y vehículos de transporte de Europa y América. Expertos en piezas destinadas a <strong className="text-foreground font-medium">dirección, frenos, transmisión y motor</strong>.
-        </motion.p>
+        <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1} variants={revealVariants} className="text-mgsteel text-[0.95rem] leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: t("sectors.desc") }} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-[2px]">
         {sectors.map((sector, i) => (
           <motion.div key={sector.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}
             className="relative h-[320px] overflow-hidden bg-mgbg3 cursor-pointer group">
-            <div className="absolute inset-0 bg-gradient-to-br from-mgsurface to-[#0d1018] transition-transform duration-500 group-hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-mgsurface to-mgbg transition-transform duration-500 group-hover:scale-105">
               <div className="absolute inset-0 opacity-[0.18] transition-opacity duration-500 group-hover:opacity-[0.35]"
                 style={{ background: sector.pattern, ...(sector.patternSize ? { backgroundSize: sector.patternSize } : {}) }} />
             </div>
-            <div className="absolute inset-0 p-9 flex flex-col justify-end bg-gradient-to-t from-[rgba(10,11,13,0.9)] to-transparent">
+            <div className="absolute inset-0 p-9 flex flex-col justify-end bg-gradient-to-t from-mgbg/90 to-transparent">
               <div className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-mgaccent mb-2.5">{sector.tag}</div>
               <h3 className="font-head font-extrabold text-[1.6rem] uppercase tracking-[0.05em] text-foreground mb-2">{sector.title}</h3>
               <p className="text-[0.82rem] text-mgmuted leading-relaxed">{sector.desc}</p>
             </div>
-            <div className="absolute top-8 right-8 w-9 h-9 border border-[rgba(255,255,255,0.07)] flex items-center justify-center text-mgmuted text-sm transition-all duration-300 group-hover:bg-mgaccent group-hover:border-mgaccent group-hover:text-foreground group-hover:rotate-45">→</div>
+            <div className="absolute top-8 right-8 w-9 h-9 border border-border flex items-center justify-center text-mgmuted text-sm transition-all duration-300 group-hover:bg-mgaccent group-hover:border-mgaccent group-hover:text-white group-hover:rotate-45">→</div>
           </motion.div>
         ))}
       </div>

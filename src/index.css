@@ -6,6 +6,48 @@
 
 @layer base {
   :root {
+    --background: 220 10% 96%;
+    --foreground: 220 14% 10%;
+
+    --card: 220 12% 94%;
+    --card-foreground: 220 14% 10%;
+
+    --popover: 220 12% 94%;
+    --popover-foreground: 220 14% 10%;
+
+    --primary: 24 90% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 8% 88%;
+    --secondary-foreground: 220 14% 10%;
+
+    --muted: 222 10% 80%;
+    --muted-foreground: 222 10% 45%;
+
+    --accent: 30 90% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 85%;
+    --input: 220 10% 85%;
+    --ring: 24 90% 47%;
+
+    --radius: 0px;
+
+    /* Custom tokens */
+    --bg: #f4f5f7;
+    --bg2: #ebedf0;
+    --bg3: #e2e4e8;
+    --surface: #d8dbe0;
+    --accent-orange: #e8620a;
+    --accent-orange2: #f59222;
+    --steel: #4a5568;
+    --text-muted: #718096;
+  }
+
+  .dark {
     --background: 220 10% 4%;
     --foreground: 220 14% 92%;
 
@@ -61,8 +103,8 @@
   }
 }
 
-/* Noise overlay */
-body::before {
+/* Noise overlay - only in dark mode */
+.dark body::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -118,6 +160,10 @@ body::before {
 /* Outline text */
 .text-outline {
   color: transparent;
+  -webkit-text-stroke: 1px hsl(var(--foreground) / 0.25);
+}
+
+.dark .text-outline {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
 }
 

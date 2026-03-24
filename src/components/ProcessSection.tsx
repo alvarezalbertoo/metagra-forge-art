@@ -1,22 +1,24 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
 
-const steps = [
-  { num: "01", title: "Codiseño & Estudio", desc: "Estudio de factibilidad y codiseño de cada pieza junto al cliente. Desarrollo del utillaje propio para el proyecto." },
-  { num: "02", title: "Preparación de Material", desc: "Selección y trefilado del alambrón de acero según las especificaciones técnicas de la pieza a producir." },
-  { num: "03", title: "Estampación en Frío", desc: "Conformado progresivo en prensas de alta tonelada. Especialistas en piezas especiales, grandes y esbeltas." },
-  { num: "04", title: "Mecanizado & Roscado", desc: "Mecanización de piezas propias y roscado con licencia Mathread. Operaciones auxiliares integradas en nuestras instalaciones." },
-  { num: "05", title: "Tratamientos & Acabados", desc: "Gestión de los tratamientos térmicos y superficiales necesarios para entregar una pieza totalmente terminada." },
-  { num: "06", title: "Control de Calidad", desc: "Inspección 100% dimensional, laboratorio interno, trazabilidad completa y los más exigentes controles bajo certificación IATF 16949." },
-];
-
 export const ProcessSection = () => {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
+
+  const steps = [
+    { num: "01", title: t("process.s1Title"), desc: t("process.s1Desc") },
+    { num: "02", title: t("process.s2Title"), desc: t("process.s2Desc") },
+    { num: "03", title: t("process.s3Title"), desc: t("process.s3Desc") },
+    { num: "04", title: t("process.s4Title"), desc: t("process.s4Desc") },
+    { num: "05", title: t("process.s5Title"), desc: t("process.s5Desc") },
+    { num: "06", title: t("process.s6Title"), desc: t("process.s6Desc") },
+  ];
 
   const nextStep = useCallback(() => {
     setActive((prev) => (prev + 1) % steps.length);
-  }, []);
+  }, [steps.length]);
 
   useEffect(() => {
     const interval = setInterval(nextStep, 2800);
@@ -24,19 +26,19 @@ export const ProcessSection = () => {
   }, [nextStep]);
 
   return (
-    <section className="bg-mgbg2 border-t border-b border-[rgba(255,255,255,0.07)] px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section className="bg-mgbg2 border-t border-b border-border px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-12 lg:gap-[100px] items-start">
         <div className="lg:sticky lg:top-[120px]">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
-            <div className="section-label">Cómo trabajamos</div>
+            <div className="section-label">{t("process.label")}</div>
             <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
-              Proceso<br /><span className="text-outline">Productivo</span>
+              {t("process.title1")}<br /><span className="text-outline">{t("process.title2")}</span>
             </h2>
           </motion.div>
           <div className="mt-16 space-y-0">
             {steps.map((step, i) => (
               <div key={step.num} onClick={() => setActive(i)}
-                className={`grid grid-cols-[60px_1fr] gap-6 py-8 border-t border-[rgba(255,255,255,0.07)] cursor-pointer relative transition-opacity duration-500 ${active === i ? "opacity-100" : "opacity-40"}`}>
+                className={`grid grid-cols-[60px_1fr] gap-6 py-8 border-t border-border cursor-pointer relative transition-opacity duration-500 ${active === i ? "opacity-100" : "opacity-40"}`}>
                 <div className={`absolute left-0 top-0 w-[2px] bg-mgaccent transition-all duration-500 ${active === i ? "h-full" : "h-0"}`} />
                 <span className="font-mono text-[0.7rem] text-mgaccent tracking-[0.15em] pt-1">{step.num}</span>
                 <div>
@@ -49,7 +51,7 @@ export const ProcessSection = () => {
         </div>
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}
-          className="lg:sticky lg:top-[120px] h-[400px] lg:h-[560px] bg-mgbg3 border border-[rgba(255,255,255,0.07)] flex items-center justify-center overflow-hidden relative">
+          className="lg:sticky lg:top-[120px] h-[400px] lg:h-[560px] bg-mgbg3 border border-border flex items-center justify-center overflow-hidden relative">
           <div className="relative w-full h-full flex items-center justify-center">
             {[340, 240, 140].map((size, i) => (
               <div key={size} className="absolute rounded-full"
