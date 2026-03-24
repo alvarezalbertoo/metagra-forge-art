@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { revealVariants, fadeUp, stagger, SMOOTH_EASE } from "@/lib/animations";
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-mgbg via-[#12141a] to-[#0d1018]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-mgbg via-mgbg2 to-mgbg3" />
       <div
         className="absolute inset-0"
         style={{
@@ -19,7 +22,7 @@ export const HeroSection = () => {
       <div
         className="absolute right-[-80px] top-0 bottom-0 w-[55%] hidden lg:block"
         style={{
-          background: "linear-gradient(160deg, rgba(20,22,28,0) 0%, rgba(25,28,36,1) 40%)",
+          background: "linear-gradient(160deg, transparent 0%, var(--bg2) 40%)",
           clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
         }}
       />
@@ -36,26 +39,23 @@ export const HeroSection = () => {
       >
         <motion.div variants={fadeUp} className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] text-mgaccent tracking-[0.2em] uppercase mb-7">
           <span className="w-7 h-[1px] bg-mgaccent" />
-          Bergara, Gipuzkoa — Desde 1970
+          {t("hero.tagline")}
         </motion.div>
         <motion.h1
           variants={fadeUp}
           className="font-head font-black text-foreground uppercase leading-[0.95] tracking-tight"
           style={{ fontSize: "clamp(3.8rem, 7vw, 7rem)" }}
         >
-          Acero<br />en <span className="text-outline-accent">Movimiento</span>
+          {t("hero.title1")}<br />{t("hero.title2")} <span className="text-outline-accent">{t("hero.title3")}</span>
         </motion.h1>
-        <motion.p variants={fadeUp} className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[520px]">
-          Estampación en frío de alambrón de acero, mecanizado y roscado de piezas metálicas para el sector de la automoción.
-          Más de <strong className="text-foreground font-medium">cinco décadas</strong> a la vanguardia tecnológica en la producción de piezas para <strong className="text-foreground font-medium">dirección, frenos, transmisión y motor</strong>.
-        </motion.p>
+        <motion.p variants={fadeUp} className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[520px]" dangerouslySetInnerHTML={{ __html: t("hero.desc") }} />
         <motion.div variants={fadeUp} className="mt-11 flex flex-wrap gap-4 items-center">
-          <Link to="/tecnologias" className="relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-foreground hover:-translate-y-0.5 transition-transform group">
+          <Link to="/tecnologias" className="relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-white hover:-translate-y-0.5 transition-transform group">
             <span className="absolute inset-0 bg-mgaccent2 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-            <span className="relative z-[1]">Ver Tecnologías</span>
+            <span className="relative z-[1]">{t("hero.cta1")}</span>
           </Link>
-          <Link to="/contacto" className="font-head font-semibold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 border border-[rgba(255,255,255,0.07)] text-mgsteel hover:border-foreground hover:text-foreground transition-all">
-            Solicitar información
+          <Link to="/contacto" className="font-head font-semibold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 border border-border text-mgsteel hover:border-foreground hover:text-foreground transition-all">
+            {t("hero.cta2")}
           </Link>
         </motion.div>
       </motion.div>
@@ -67,9 +67,9 @@ export const HeroSection = () => {
         transition={{ duration: 0.7, delay: 0.8, ease: SMOOTH_EASE }}
       >
         {[
-          { num: "+50", label: "Años de experiencia" },
-          { num: "2", label: "Plantas (ES + MX)" },
-          { num: "IATF", label: "16949 Certificación" },
+          { num: "+50", label: t("hero.stat1") },
+          { num: "2", label: t("hero.stat2") },
+          { num: "IATF", label: t("hero.stat3") },
         ].map((s) => (
           <div key={s.label} className="text-right">
             <div className="font-head text-[2.6rem] font-extrabold text-foreground leading-none">

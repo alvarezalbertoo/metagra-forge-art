@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { SMOOTH_EASE } from "@/lib/animations";
-
-const stats = [
-  { prefix: "+", value: 50, suffix: "", label: "Años de experiencia" },
-  { prefix: "", value: 2, suffix: "", label: "Plantas productivas (ES + MX)" },
-  { prefix: "", value: 300, suffix: "+", label: "Referencias activas" },
-  { prefix: "", value: 100, suffix: "%", label: "Control dimensional" },
-];
 
 function useCountUp(target: number, duration = 1600) {
   const [count, setCount] = useState(0);
@@ -41,9 +35,18 @@ function useCountUp(target: number, duration = 1600) {
 }
 
 export const StatsSection = () => {
+  const { t } = useTranslation();
+
+  const stats = [
+    { prefix: "+", value: 50, suffix: "", label: t("stats.s1") },
+    { prefix: "", value: 2, suffix: "", label: t("stats.s2") },
+    { prefix: "", value: 300, suffix: "+", label: t("stats.s3") },
+    { prefix: "", value: 100, suffix: "%", label: t("stats.s4") },
+  ];
+
   return (
-    <section className="bg-mgbg px-6 lg:px-[60px] py-20 border-b border-[rgba(255,255,255,0.07)] relative z-[2]">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[rgba(255,255,255,0.07)]">
+    <section className="bg-mgbg px-6 lg:px-[60px] py-20 border-b border-border relative z-[2]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-[1px] bg-border">
         {stats.map((stat, i) => (
           <StatBox key={stat.label} stat={stat} delay={i} />
         ))}
@@ -52,7 +55,7 @@ export const StatsSection = () => {
   );
 };
 
-function StatBox({ stat, delay }: { stat: typeof stats[0]; delay: number }) {
+function StatBox({ stat, delay }: { stat: { prefix: string; value: number; suffix: string; label: string }; delay: number }) {
   const { count, ref } = useCountUp(stat.value);
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

@@ -1,16 +1,9 @@
 import { motion } from "framer-motion";
-
-const items = [
-  "Estampación en Frío",
-  "Mecanizado de Piezas",
-  "Roscado Industrial",
-  "Sector Automoción",
-  "Licencia Mathread",
-  "Certificación IATF 16949",
-  "Bergara · Gipuzkoa",
-];
+import { useTranslation } from "react-i18next";
 
 export const MarqueeBand = () => {
+  const { t } = useTranslation();
+  const items = t("marquee.items", { returnObjects: true }) as string[];
   const doubled = [...items, ...items];
 
   return (
