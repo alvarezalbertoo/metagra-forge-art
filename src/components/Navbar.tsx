@@ -8,6 +8,7 @@ import metagraLogo from "@/assets/metagra-logo.png";
 
 const languages = [
   { code: "es", label: "ES" },
+  { code: "eu", label: "EU" },
   { code: "en", label: "EN" },
   { code: "fr", label: "FR" },
   { code: "de", label: "DE" },
