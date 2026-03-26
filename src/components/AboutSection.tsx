@@ -14,7 +14,7 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section className="bg-mgbg2 px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="servicios" className="bg-mgbg2 px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={revealVariants}>
           <div className="section-label">{t("about.label")}</div>

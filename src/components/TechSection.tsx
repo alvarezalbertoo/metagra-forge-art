@@ -19,7 +19,7 @@ export const TechSection = () => {
   ];
 
   return (
-    <section className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="materiales" className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-[72px] gap-6" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={revealVariants}>
         <div>
           <div className="section-label">{t("tech.label")}</div>

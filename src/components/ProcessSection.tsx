@@ -26,7 +26,7 @@ export const ProcessSection = () => {
   }, [nextStep]);
 
   return (
-    <section className="bg-mgbg2 border-t border-b border-border px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="procesos" className="bg-mgbg2 border-t border-b border-border px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-12 lg:gap-[100px] items-start">
         <div className="lg:sticky lg:top-[120px]">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
