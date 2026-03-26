@@ -45,7 +45,7 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section className="bg-mgbg px-6 lg:px-[60px] py-20 border-b border-border relative z-[2]">
+    <section id="instalaciones" className="bg-mgbg px-6 lg:px-[60px] py-20 border-b border-border relative z-[2]">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-[1px] bg-border">
         {stats.map((stat, i) => (
           <StatBox key={stat.label} stat={stat} delay={i} />

@@ -7,7 +7,7 @@ export const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section id="inicio" className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-mgbg via-mgbg2 to-mgbg3" />
       <div
         className="absolute inset-0"

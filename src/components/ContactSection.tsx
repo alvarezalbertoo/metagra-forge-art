@@ -61,7 +61,7 @@ export const ContactSection = () => {
   const inputClass = "bg-mgsurface border border-border text-foreground px-4 py-3.5 font-body text-[0.9rem] font-light outline-none focus:border-mgaccent transition-colors w-full";
 
   return (
-    <section className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="contacto" className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
           <div className="section-label">{t("contact.label")}</div>
