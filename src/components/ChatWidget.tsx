@@ -6,23 +6,14 @@ type ChatMsg = { role: "user" | "assistant" | "system"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
-const SECTION_MAP: Record<string, string[]> = {
-  inicio: ["inicio", "portada", "home", "arriba", "principal"],
-  servicios: ["servicios", "servicio", "qué hacen", "que hacen", "oferta"],
-  procesos: ["procesos", "proceso", "cómo trabajan", "como trabajan", "producción"],
-  materiales: ["materiales", "material", "acero", "metal", "insumos", "tecnologías"],
-  instalaciones: ["instalaciones", "planta", "fábrica", "fabrica", "facilities", "cifras"],
-  clientes: ["clientes", "proyectos", "casos", "ejemplos", "trabajos", "sectores"],
-  contacto: ["contacto", "contactar", "email", "teléfono", "ubicación", "dirección"],
-};
-
 const SECTION_LABELS: Record<string, string> = {
   inicio: "Inicio",
   servicios: "Servicios",
-  procesos: "Procesos",
-  materiales: "Materiales",
+  calidad: "Calidad",
   instalaciones: "Instalaciones",
-  clientes: "Clientes",
+  galeria: "Galería",
+  cotizador: "Cotizador",
+  sectores: "Sectores",
   contacto: "Contacto",
 };
 
@@ -189,20 +180,26 @@ export const ChatWidget = () => {
         setLoading(false);
         const { cleanText, sectionId } = parseNavigation(fullText);
         if (sectionId) {
-          // Update last message with clean text and add nav bubble
+          const el = document.getElementById(sectionId);
+          // Update last message with clean text
           setMessages((prev) => {
             const updated = [...prev];
             const lastIdx = updated.length - 1;
             if (updated[lastIdx]?.role === "assistant") {
               updated[lastIdx] = { ...updated[lastIdx], content: cleanText };
             }
-            updated.push({
-              role: "system",
-              content: `↓ Te llevo a la sección de ${SECTION_LABELS[sectionId] || sectionId}`,
-            });
+            // Only add nav bubble if element exists in DOM
+            if (el) {
+              updated.push({
+                role: "system",
+                content: `↓ Te llevo a la sección de ${SECTION_LABELS[sectionId] || sectionId}`,
+              });
+            }
             return updated;
           });
-          setTimeout(() => scrollToSection(sectionId), 400);
+          if (el) {
+            setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 400);
+          }
         }
       },
       onError: (msg) => {
