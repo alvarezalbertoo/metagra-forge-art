@@ -8,7 +8,7 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 const SECTION_MAP: Record<string, string[]> = {
   inicio: ["inicio", "portada", "home", "arriba", "principal"],
-  servicios: ["servicios", "servicio", "qué hacen", "que hacen", "oferta"],
+  "our-services": ["servicios", "servicio", "qué hacen", "que hacen", "oferta"],
   procesos: ["procesos", "proceso", "cómo trabajan", "como trabajan", "producción"],
   materiales: ["materiales", "material", "acero", "metal", "insumos", "tecnologías"],
   instalaciones: ["instalaciones", "planta", "fábrica", "fabrica", "facilities", "cifras"],
@@ -18,7 +18,7 @@ const SECTION_MAP: Record<string, string[]> = {
 
 const SECTION_LABELS: Record<string, string> = {
   inicio: "Inicio",
-  servicios: "Servicios",
+  "our-services": "Servicios",
   procesos: "Procesos",
   materiales: "Materiales",
   instalaciones: "Instalaciones",
