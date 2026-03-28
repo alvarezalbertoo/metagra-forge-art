@@ -173,15 +173,37 @@ export const Navbar = () => {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[99] bg-mgbg pt-20 px-8 flex flex-col gap-6"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("/#");
+              const handleMobileHash = () => {
+                setMobileOpen(false);
+                const id = link.href.slice(2);
+                if (location.pathname === "/") {
+                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 350);
+                } else {
+                  navigate("/");
+                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 600);
+                }
+              };
+              return isHash ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleMobileHash(); }}
+                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link
               to="/contacto"
               className="font-head font-bold text-lg tracking-[0.18em] uppercase px-6 py-3 border border-mgaccent text-mgaccent hover:bg-mgaccent hover:text-white transition-all mt-4 text-center"
