@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,7 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
@@ -26,7 +27,8 @@ export const Navbar = () => {
     { label: t("nav.grupo"), href: "/grupo" },
     { label: t("nav.tecnologias"), href: "/tecnologias" },
     { label: t("nav.sectores"), href: "/sectores" },
-    { label: t("nav.calidad"), href: "/calidad" },
+    { label: t("nav.calidad"), href: "/#calidad" },
+    { label: t("nav.descargas"), href: "/#descargas" },
   ];
 
   useEffect(() => {
@@ -60,16 +62,39 @@ export const Navbar = () => {
 
         {/* Desktop links */}
         <ul className="hidden lg:flex gap-9 list-none">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                to={link.href}
-                className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isHash = link.href.startsWith("/#");
+            const handleHashClick = (e: React.MouseEvent) => {
+              e.preventDefault();
+              const id = link.href.slice(2);
+              if (location.pathname === "/") {
+                document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else {
+                navigate("/" , { replace: false });
+                setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 300);
+              }
+            };
+            return (
+              <li key={link.href}>
+                {isHash ? (
+                  <a
+                    href={link.href}
+                    onClick={handleHashClick}
+                    className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={link.href}
+                    className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-3">
@@ -148,15 +173,37 @@ export const Navbar = () => {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[99] bg-mgbg pt-20 px-8 flex flex-col gap-6"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("/#");
+              const handleMobileHash = () => {
+                setMobileOpen(false);
+                const id = link.href.slice(2);
+                if (location.pathname === "/") {
+                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 350);
+                } else {
+                  navigate("/");
+                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 600);
+                }
+              };
+              return isHash ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleMobileHash(); }}
+                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link
               to="/contacto"
               className="font-head font-bold text-lg tracking-[0.18em] uppercase px-6 py-3 border border-mgaccent text-mgaccent hover:bg-mgaccent hover:text-white transition-all mt-4 text-center"
