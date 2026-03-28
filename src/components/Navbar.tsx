@@ -26,7 +26,8 @@ export const Navbar = () => {
     { label: t("nav.grupo"), href: "/grupo" },
     { label: t("nav.tecnologias"), href: "/tecnologias" },
     { label: t("nav.sectores"), href: "/sectores" },
-    { label: t("nav.calidad"), href: "/calidad" },
+    { label: t("nav.calidad"), href: "/#calidad" },
+    { label: t("nav.descargas"), href: "/#descargas" },
   ];
 
   useEffect(() => {
