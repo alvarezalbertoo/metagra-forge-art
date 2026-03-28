@@ -10,6 +10,7 @@ const resources = {
         tecnologias: "Tecnologías",
         sectores: "Sectores",
         calidad: "Calidad",
+        descargas: "Descargas",
         contacto: "Contacto",
       },
       hero: {
@@ -178,6 +179,7 @@ const resources = {
         tecnologias: "Technologies",
         sectores: "Sectors",
         calidad: "Quality",
+        descargas: "Downloads",
         contacto: "Contact",
       },
       hero: {
@@ -346,6 +348,7 @@ const resources = {
         tecnologias: "Technologies",
         sectores: "Secteurs",
         calidad: "Qualité",
+        descargas: "Téléchargements",
         contacto: "Contact",
       },
       hero: {
@@ -514,6 +517,7 @@ const resources = {
         tecnologias: "Teknologiak",
         sectores: "Sektoreak",
         calidad: "Kalitatea",
+        descargas: "Deskargak",
         contacto: "Kontaktua",
       },
       hero: {
@@ -682,6 +686,7 @@ const resources = {
         tecnologias: "Technologien",
         sectores: "Sektoren",
         calidad: "Qualität",
+        descargas: "Downloads",
         contacto: "Kontakt",
       },
       hero: {
