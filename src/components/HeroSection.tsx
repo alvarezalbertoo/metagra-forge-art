@@ -13,7 +13,7 @@ export const HeroSection = () => {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(232,98,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(232,98,10,0.06) 1px, transparent 1px)",
+            "linear-gradient(rgba(52,73,100,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(52,73,100,0.08) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
           maskImage: "radial-gradient(ellipse 80% 70% at 60% 50%, black 30%, transparent 80%)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 60% 50%, black 30%, transparent 80%)",
@@ -28,7 +28,7 @@ export const HeroSection = () => {
       />
       <div
         className="absolute left-0 bottom-0 w-[3px] h-[55%]"
-        style={{ background: "linear-gradient(to top, #e8620a, transparent)" }}
+        style={{ background: "linear-gradient(to top, #344964, transparent)" }}
       />
 
       <motion.div
@@ -87,7 +87,7 @@ export const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
       >
-        <div className="w-[1px] h-12" style={{ background: "linear-gradient(to bottom, #e8620a, transparent)", animation: "scrollPulse 1.8s ease-in-out infinite" }} />
+        <div className="w-[1px] h-12" style={{ background: "linear-gradient(to bottom, #344964, transparent)", animation: "scrollPulse 1.8s ease-in-out infinite" }} />
         <span className="font-mono text-[0.6rem] tracking-[0.2em] text-mgmuted" style={{ writingMode: "vertical-lr" }}>Scroll</span>
       </motion.div>
     </section>

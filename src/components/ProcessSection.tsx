@@ -55,7 +55,7 @@ export const ProcessSection = () => {
           <div className="relative w-full h-full flex items-center justify-center">
             {[340, 240, 140].map((size, i) => (
               <div key={size} className="absolute rounded-full"
-                style={{ width: size, height: size, border: `1px solid rgba(232,98,10,${0.15 + i * 0.1})`, animation: `ringPulse 4s ease-in-out infinite ${i * 0.8}s` }} />
+                style={{ width: size, height: size, border: `1px solid rgba(52,73,100,${0.15 + i * 0.1})`, animation: `ringPulse 4s ease-in-out infinite ${i * 0.8}s` }} />
             ))}
             <div className="w-[70px] h-[70px] bg-mgaccent" style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)", animation: "rotateSlow 8s linear infinite" }} />
           </div>
