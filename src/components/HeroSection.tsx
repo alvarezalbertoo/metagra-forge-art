@@ -8,6 +8,13 @@ export const HeroSection = () => {
 
   return (
     <section id="inicio" className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+      {/* TODO: Reemplazar gradient por video real (loop industrial). Ejemplo:
+        <video className="absolute inset-0 w-full h-full object-cover opacity-40"
+               autoPlay muted loop playsInline preload="metadata"
+               poster="/hero-poster.jpg">
+          <source src="/hero-loop.mp4" type="video/mp4" />
+        </video>
+      */}
       <div className="absolute inset-0 bg-gradient-to-br from-mgbg via-mgbg2 to-mgbg3" />
       <div
         className="absolute inset-0"
@@ -48,6 +55,12 @@ export const HeroSection = () => {
         >
           {t("hero.title1")}<br />{t("hero.title2")} <span className="text-outline-accent">{t("hero.title3")}</span>
         </motion.h1>
+        <motion.p
+          variants={fadeUp}
+          className="mt-5 font-head font-semibold text-mgaccent uppercase tracking-[0.18em] text-[0.95rem] lg:text-[1.05rem]"
+        >
+          {t("hero.subTagline")}
+        </motion.p>
         <motion.p variants={fadeUp} className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[520px]" dangerouslySetInnerHTML={{ __html: t("hero.desc") }} />
         <motion.div variants={fadeUp} className="mt-11 flex flex-wrap gap-4 items-center">
           <Link to="/tecnologias" className="relative overflow-hidden font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-white hover:-translate-y-0.5 transition-transform group">
