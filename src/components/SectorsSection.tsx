@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
 
 const patterns = [
-  { pattern: "repeating-linear-gradient(45deg, #e8620a 0, #e8620a 1px, transparent 0, transparent 50%)", patternSize: "20px 20px" },
-  { pattern: "radial-gradient(circle at 50% 50%, rgba(232,98,10,0.3) 0%, transparent 60%)" },
-  { pattern: "repeating-conic-gradient(rgba(232,98,10,0.08) 0deg, transparent 10deg, transparent 30deg)" },
+  { pattern: "repeating-linear-gradient(45deg, #344964 0, #344964 1px, transparent 0, transparent 50%)", patternSize: "20px 20px" },
+  { pattern: "radial-gradient(circle at 50% 50%, rgba(52,73,100,0.3) 0%, transparent 60%)" },
+  { pattern: "repeating-conic-gradient(rgba(52,73,100,0.08) 0deg, transparent 10deg, transparent 30deg)" },
 ];
 
 export const SectorsSection = () => {
