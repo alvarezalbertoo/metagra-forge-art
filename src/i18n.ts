@@ -15,6 +15,7 @@ const resources = {
       },
       hero: {
         tagline: "Bergara, Gipuzkoa — Desde 1970",
+        subTagline: "Global specialist in cold forging & precision machining",
         title1: "Acero",
         title2: "en",
         title3: "Movimiento",
@@ -226,6 +227,7 @@ const resources = {
         contacto: "Contact",
       },
       hero: {
+        subTagline: "Global specialist in cold forging & precision machining",
         tagline: "Bergara, Gipuzkoa — Since 1970",
         title1: "Steel",
         title2: "in",
@@ -419,6 +421,7 @@ const resources = {
         descargas: "Téléchargements",
         contacto: "Contact",
       },
+        subTagline: "Global specialist in cold forging & precision machining",
       hero: {
         tagline: "Bergara, Gipuzkoa — Depuis 1970",
         title1: "Acier",
@@ -612,6 +615,7 @@ const resources = {
         calidad: "Kalitatea",
         descargas: "Deskargak",
         contacto: "Kontaktua",
+        subTagline: "Global specialist in cold forging & precision machining",
       },
       hero: {
         tagline: "Bergara, Gipuzkoa — 1970etik",
@@ -805,6 +809,7 @@ const resources = {
         sectores: "Sektoren",
         calidad: "Qualität",
         descargas: "Downloads",
+        subTagline: "Global specialist in cold forging & precision machining",
         contacto: "Kontakt",
       },
       hero: {
