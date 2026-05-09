@@ -56,8 +56,8 @@ export const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        <Link to="/">
-          <img src={metagraLogo} alt="Metagra Group" className="h-10 dark:brightness-100 brightness-90" />
+        <Link to="/" className="flex items-center gap-3">
+          <img src={metagraLogo} alt="Metagra Group" className="h-12 lg:h-14 w-auto dark:brightness-100 brightness-90" />
         </Link>
 
         {/* Desktop links */}

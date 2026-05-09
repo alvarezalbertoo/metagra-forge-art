@@ -38,6 +38,20 @@ export const HeroSection = () => {
         style={{ background: "linear-gradient(to top, #344964, transparent)" }}
       />
 
+      {/* Wordmark gigante de fondo */}
+      <div
+        aria-hidden="true"
+        className="absolute right-0 bottom-[-40px] lg:bottom-[-80px] pointer-events-none select-none overflow-hidden w-full"
+        style={{ zIndex: 1 }}
+      >
+        <div
+          className="font-head font-black uppercase leading-none tracking-tighter text-foreground/[0.04] dark:text-foreground/[0.06] whitespace-nowrap text-right pr-6 lg:pr-[60px]"
+          style={{ fontSize: "clamp(10rem, 24vw, 28rem)" }}
+        >
+          METAGRA
+        </div>
+      </div>
+
       <motion.div
         className="relative z-[2] px-6 lg:px-[60px] max-w-[760px]"
         variants={stagger}
