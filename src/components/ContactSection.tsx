@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { MapPin, Phone, Globe } from "lucide-react";
