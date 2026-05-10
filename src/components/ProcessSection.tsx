@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 
 export const ProcessSection = () => {
   const { t } = useTranslation();
@@ -26,12 +27,22 @@ export const ProcessSection = () => {
   }, [nextStep]);
 
   return (
-    <section id="procesos" className="bg-mgbg2 border-t border-b border-border px-6 lg:px-[60px] py-[120px] relative z-[2]">
-      <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-12 lg:gap-[100px] items-start">
+    <section id="procesos" className="bg-mgbg2 border-t border-b border-border px-6 lg:px-[60px] py-[140px] relative z-[2] overflow-hidden">
+      {/* Pattern blueprint sutil */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(0deg, transparent 24%, #344964 25%, #344964 26%, transparent 27%, transparent 74%, #344964 75%, #344964 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #344964 25%, #344964 26%, transparent 27%, transparent 74%, #344964 75%, #344964 76%, transparent 77%, transparent)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+      <div className="relative z-[1] grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-12 lg:gap-[100px] items-start">
         <div className="lg:sticky lg:top-[120px]">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
-            <div className="section-label">{t("process.label")}</div>
-            <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
+            <SectionLabel number="04">{t("process.label")}</SectionLabel>
+            <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(3rem, 6.5vw, 5.5rem)" }}>
               {t("process.title1")}<br /><span className="text-outline">{t("process.title2")}</span>
             </h2>
           </motion.div>

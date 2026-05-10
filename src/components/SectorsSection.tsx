@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 import { useState } from "react";
 import { Car, Train, Factory } from "lucide-react";
 
@@ -23,11 +24,11 @@ export const SectorsSection = () => {
   const current = sectors[active];
 
   return (
-    <section id="clientes" className="bg-mgbg2 px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="clientes" className="bg-mgbg2 px-6 lg:px-[60px] py-[140px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-[72px]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
-          <div className="section-label">{t("sectors.label")}</div>
-          <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
+          <SectionLabel number="06">{t("sectors.label")}</SectionLabel>
+          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
             {t("sectors.title1")}<br /><span className="text-outline">{t("sectors.title2")}</span>
           </h2>
         </motion.div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ShieldCheck, Trophy, Star, Award, Download } from "lucide-react";
 import { SMOOTH_EASE } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 
 const certificates = [
   { nameKey: "certs.iso9001", descKey: "certs.iso9001Desc", pdf: "/docs/certificado-9001-2027.pdf" },
@@ -32,7 +33,7 @@ export const CertificacionesSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="calidad" className="bg-background py-24 px-6 lg:px-[60px]">
+    <section id="calidad" className="bg-background py-[140px] px-6 lg:px-[60px]">
       {/* Intro */}
       <motion.div
         initial={{ opacity: 0, y: 32 }}
@@ -41,7 +42,8 @@ export const CertificacionesSection = () => {
         transition={{ duration: 0.7, ease: SMOOTH_EASE }}
         className="max-w-3xl mb-16"
       >
-        <h2 className="font-head font-black text-foreground uppercase leading-[1.05]" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
+        <SectionLabel number="08">{t("certs.label") !== "certs.label" ? t("certs.label") : "Certificaciones"}</SectionLabel>
+        <h2 className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
           {t("certs.title")}
         </h2>
         <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-2xl">

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { SMOOTH_EASE } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 
 const certs = ["IATF 16949", "ISO 9001", "ISO 14001", "Mathread"];
 
@@ -19,7 +20,8 @@ export const QualitySection = () => {
         CALIDAD
       </div>
       <div className="relative z-[1]">
-        <h2 className="font-head font-black text-white uppercase leading-[1.05]" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
+        <SectionLabel number="07" variant="light">{t("quality.title1")}</SectionLabel>
+        <h2 className="font-head font-black text-white uppercase leading-[0.9] tracking-tight" style={{ fontSize: "clamp(3rem, 6.5vw, 5.5rem)" }}>
           {t("quality.title1")}<br />{t("quality.title2")}
         </h2>
         <p className="mt-4 text-base text-white/75 max-w-[520px] leading-relaxed" dangerouslySetInnerHTML={{ __html: t("quality.desc") }} />

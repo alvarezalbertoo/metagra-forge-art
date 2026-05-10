@@ -26,6 +26,10 @@ const resources = {
         stat2: "Plantas (ES + MX)",
         stat3: "16949 Certificación",
       },
+      pullquote: {
+        label: "MISIÓN",
+        text: "Cada pieza que sale de Bergara o Guanajuato lleva <span class='text-outline-accent'> 50 años de oficio </span> detrás.",
+      },
       marquee: {
         items: ["Estampación en Frío", "Mecanizado de Piezas", "Roscado Industrial", "Sector Automoción", "Licencia Mathread", "Certificación IATF 16949", "Bergara · Gipuzkoa"],
       },
@@ -257,6 +261,10 @@ const resources = {
         stat2: "Plants (ES + MX)",
         stat3: "16949 Certification",
       },
+      pullquote: {
+        label: "MISSION",
+        text: "Every part that leaves Bergara or Guanajuato carries <span class='text-outline-accent'> 50 years of craft </span> behind it.",
+      },
       marquee: {
         items: ["Cold Stamping", "Part Machining", "Part Threading", "Automobile Sector", "Mathread License", "IATF 16949 Certification", "Bergara · Gipuzkoa"],
       },
@@ -469,6 +477,10 @@ const resources = {
         stat1: "Années d'expérience",
         stat2: "Usines (ES + MX)",
         stat3: "16949 Certification",
+      },
+      pullquote: {
+        label: "MISIOA",
+        text: "Bergara edo Guanajuatotik irteten den pieza bakoitzak <span class='text-outline-accent'> 50 urteko ofizioa </span> dakar atzetik.",
       },
       marquee: {
         items: ["Estampage à Froid", "Usinage de Pièces", "Filetage de Pièces", "Secteur Automobile", "Licence Mathread", "Certification IATF 16949", "Bergara · Gipuzkoa"],
@@ -683,6 +695,10 @@ const resources = {
         stat2: "Lantegia (ES + MX)",
         stat3: "16949 Ziurtagiria",
       },
+      pullquote: {
+        label: "MISSION",
+        text: "Chaque pièce qui sort de Bergara ou Guanajuato porte <span class='text-outline-accent'> 50 ans de savoir-faire </span> derrière elle.",
+      },
       marquee: {
         items: ["Hotzeko Estanpazioa", "Piezen Mekanizazioa", "Piezen Hariztatua", "Automobilgintza Sektorea", "Mathread Lizentzia", "IATF 16949 Ziurtagiria", "Bergara · Gipuzkoa"],
       },
@@ -895,6 +911,10 @@ const resources = {
         stat1: "Jahre Erfahrung",
         stat2: "Werke (ES + MX)",
         stat3: "16949 Zertifizierung",
+      },
+      pullquote: {
+        label: "MISSION",
+        text: "Jedes Teil, das Bergara oder Guanajuato verlässt, trägt <span class='text-outline-accent'> 50 Jahre Handwerk </span> in sich.",
       },
       marquee: {
         items: ["Kaltumformen", "Bearbeitung", "Gewindeschneiden", "Automobilsektor", "Mathread-Lizenz", "IATF 16949 Zertifizierung", "Bergara · Gipuzkoa"],

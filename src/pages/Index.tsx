@@ -14,6 +14,8 @@ import { CertificacionesSection } from "@/components/CertificacionesSection";
 import { DescargasSection } from "@/components/DescargasSection";
 import { ContactSection } from "@/components/ContactSection";
 import { BrandClosingSection } from "@/components/BrandClosingSection";
+import { PullQuote } from "@/components/PullQuote";
+import { CinematicBleed } from "@/components/CinematicBleed";
 
 const Index = () => {
   return (
@@ -24,9 +26,11 @@ const Index = () => {
       <MarqueeBand />
       <AboutSection />
       <GlobalPresenceSection />
+      <CinematicBleed />
       <TechSection />
       <ProcessSection />
       <StatsSection />
+      <PullQuote />
       <SectorsSection />
       <QualitySection />
       <CertificacionesSection />

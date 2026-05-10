@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FileText, Download } from "lucide-react";
 import { SMOOTH_EASE } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 
 const certDownloads = [
   { nameKey: "downloads.iso9001", descKey: "downloads.iso9001Desc", pdf: "/docs/certificado-9001-2027.pdf" },
@@ -48,7 +49,7 @@ export const DescargasSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="descargas" className="bg-background py-24 px-6 lg:px-[60px]">
+    <section id="descargas" className="bg-background py-[140px] px-6 lg:px-[60px]">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +57,8 @@ export const DescargasSection = () => {
         transition={{ duration: 0.7, ease: SMOOTH_EASE }}
         className="max-w-3xl mb-14"
       >
-        <h2 className="font-head font-black text-foreground uppercase leading-[1.05]" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
+        <SectionLabel number="09">{t("downloads.title")}</SectionLabel>
+        <h2 className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
           {t("downloads.title")}
         </h2>
         <p className="mt-4 text-base text-muted-foreground leading-relaxed">
