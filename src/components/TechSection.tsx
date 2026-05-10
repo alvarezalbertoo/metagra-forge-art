@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { revealVariants } from "@/lib/animations";
 import { Hexagon, Diamond, CircleDot, Wrench, FlaskConical, Layers } from "lucide-react";
+import { SectionLabel } from "@/components/SectionLabel";
 
 const icons = [Hexagon, Diamond, CircleDot, Wrench, FlaskConical, Layers];
 
@@ -19,11 +20,11 @@ export const TechSection = () => {
   ];
 
   return (
-    <section id="materiales" className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="materiales" className="bg-mgbg px-6 lg:px-[60px] py-[140px] relative z-[2]">
       <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-[72px] gap-6" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={revealVariants}>
         <div>
-          <div className="section-label">{t("tech.label")}</div>
-          <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
+          <SectionLabel number="03">{t("tech.label")}</SectionLabel>
+          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
             {t("tech.title1")}<br /><span className="text-outline">{t("tech.title2")}</span>
           </h2>
         </div>
