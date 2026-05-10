@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { revealVariants } from "@/lib/animations";
+import { SectionLabel } from "@/components/SectionLabel";
 
 export const GlobalPresenceSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="presencia-global" className="bg-mgbg3 py-[120px] px-6 lg:px-[60px] relative z-[2] overflow-hidden">
+    <section id="presencia-global" className="bg-mgbg3 py-[140px] px-6 lg:px-[60px] relative z-[2] overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={revealVariants}>
-          <div className="section-label">{t("global.label")}</div>
-          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
+          <SectionLabel number="02">{t("global.label")}</SectionLabel>
+          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
             BE WHERE OUR<br />
             <span className="text-outline-accent">CUSTOMER IS</span>
           </h2>
@@ -41,11 +42,14 @@ export const GlobalPresenceSection = () => {
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={revealVariants} custom={1} className="relative">
           {/* TODO: foto real planta México */}
-          <img
-            src="https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=1200&q=80"
-            alt="Planta Metagra México"
-            className="aspect-[4/5] w-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
-          />
+          <div className="group relative overflow-hidden aspect-[4/5]">
+            <img
+              src="https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&w=1200&q=80"
+              alt="Planta Metagra México"
+              className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
           <div className="absolute bottom-6 left-6 bg-mgbg/90 backdrop-blur-sm border border-border px-5 py-4">
             <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-1">
               Guanajuato · México
