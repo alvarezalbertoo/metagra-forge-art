@@ -61,11 +61,11 @@ export const ContactSection = () => {
   const inputClass = "bg-mgsurface border border-border text-foreground px-4 py-3.5 font-body text-[0.9rem] font-light outline-none focus:border-mgaccent transition-colors w-full";
 
   return (
-    <section id="contacto" className="bg-mgbg px-6 lg:px-[60px] py-[120px] relative z-[2]">
+    <section id="contacto" className="bg-mgbg px-6 lg:px-[60px] py-[140px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
-          <div className="section-label">{t("contact.label")}</div>
-          <h2 className="font-head font-extrabold uppercase leading-none tracking-tight text-foreground mb-7" style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)" }}>
+          <SectionLabel number="10">{t("contact.label")}</SectionLabel>
+          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground mb-7" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
             {t("contact.title1")}<br /><span className="text-outline">{t("contact.title2")}</span>
           </h2>
           <div className="mt-12 space-y-0">
