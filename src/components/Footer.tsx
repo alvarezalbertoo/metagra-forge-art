@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Linkedin, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import metagraLogo from "@/assets/metagra-logo.png";
+import linkedinIcon from "@/assets/linkedin.svg";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -36,13 +37,17 @@ export const Footer = () => {
             {t("footer.desc")}
           </p>
           <a
-            href="https://www.linkedin.com/"
+            href="https://es.linkedin.com/company/metagra-group"
             target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="mt-6 inline-flex w-9 h-9 border border-border items-center justify-center text-mgsteel hover:bg-mgaccent hover:text-white hover:border-mgaccent transition-all"
+            rel="noreferrer"
+            aria-label="LinkedIn Metagra Group"
+            className="group mt-6 inline-flex w-10 h-10 border border-border items-center justify-center text-mgsteel hover:bg-mgaccent hover:border-mgaccent transition-all duration-300"
           >
-            <Linkedin size={16} strokeWidth={1.5} />
+            <img
+              src={linkedinIcon}
+              alt=""
+              className="w-5 h-5 [filter:brightness(0)] dark:[filter:brightness(0)_invert(1)] group-hover:[filter:brightness(0)_invert(1)] transition-[filter] duration-300"
+            />
           </a>
         </div>
 
