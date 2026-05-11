@@ -41,12 +41,12 @@ export const Footer = () => {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn Metagra Group"
-            className="group mt-6 inline-flex w-10 h-10 border border-border items-center justify-center text-mgsteel hover:bg-mgaccent hover:border-mgaccent transition-all duration-300"
+            className="mt-6 inline-flex items-center justify-center hover:opacity-80 hover:scale-105 transition-all"
           >
             <img
               src={linkedinIcon}
               alt=""
-              className="w-5 h-5 [filter:brightness(0)] dark:[filter:brightness(0)_invert(1)] group-hover:[filter:brightness(0)_invert(1)] transition-[filter] duration-300"
+              className="w-11 h-11"
             />
           </a>
         </div>

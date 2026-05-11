@@ -43,7 +43,9 @@ export const SectorsSection = () => {
               <button
                 key={sector.title}
                 onClick={() => setActive(i)}
-                className={`relative text-left p-7 border-b border-border last:border-b-0 transition-all duration-300 group ${isActive ? "bg-mgsurface" : "bg-mgbg2 hover:bg-mgsurface/60"}`}
+                aria-pressed={isActive}
+                aria-label={`Ver sector: ${sector.title}`}
+                className={`relative text-left p-7 border-b border-border last:border-b-0 transition-all duration-300 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-mgaccent ${isActive ? "bg-mgsurface" : "bg-mgbg2 hover:bg-mgsurface/60"}`}
               >
                 <span className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 ${isActive ? "bg-mgaccent" : "bg-transparent"}`} />
                 <div className="flex items-center gap-4">
@@ -71,7 +73,6 @@ export const SectorsSection = () => {
             style={{ background: current.pattern, ...(current.patternSize ? { backgroundSize: current.patternSize } : {}) }}
           />
           <div className="absolute inset-0 p-10 lg:p-14 flex flex-col justify-end bg-gradient-to-t from-mgbg/90 via-mgbg/40 to-transparent">
-            <div className="font-mono text-[0.65rem] tracking-[0.25em] uppercase text-mgaccent mb-3">{String(active + 1).padStart(2, "0")} / {String(sectors.length).padStart(2, "0")}</div>
             <h3 className="font-head font-extrabold text-[2.2rem] lg:text-[2.8rem] uppercase tracking-tight text-foreground mb-4">{current.title}</h3>
             <p className="text-[0.95rem] text-mgsteel leading-relaxed max-w-[640px]">{current.desc}</p>
           </div>

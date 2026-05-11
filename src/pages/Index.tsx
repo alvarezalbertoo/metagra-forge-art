@@ -32,7 +32,6 @@ const Index = () => {
       <StatsSection />
       <PullQuote />
       <SectorsSection />
-      <QualitySection />
       <CertificacionesSection />
       <DescargasSection />
       <ContactSection />

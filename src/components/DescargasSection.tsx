@@ -1,55 +1,37 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FileText, Download } from "lucide-react";
+import { FileText, Download, ArrowRight, ShieldCheck } from "lucide-react";
 import { SMOOTH_EASE } from "@/lib/animations";
 import { SectionLabel } from "@/components/SectionLabel";
-
-const certDownloads = [
-  { nameKey: "downloads.iso9001", descKey: "downloads.iso9001Desc", pdf: "/docs/certificado-9001-2027.pdf" },
-  { nameKey: "downloads.iatf16949", descKey: "downloads.iatf16949Desc", pdf: "/docs/certificado-16949-2027.pdf" },
-  { nameKey: "downloads.iso14001", descKey: "downloads.iso14001Desc", pdf: "/docs/certificado-14000.pdf" },
-  { nameKey: "downloads.iso45001", descKey: "downloads.iso45001Desc", pdf: "/docs/certificado-45001-2008.pdf" },
-  { nameKey: "downloads.politica", descKey: "", pdf: "/docs/politica-integrada-2025.pdf" },
-];
-
-const catalogDownloads = [
-  { nameKey: "downloads.catalogo", descKey: "downloads.catalogoDesc", pdf: "/docs/catalogo-metagra.pdf" },
-  { nameKey: "downloads.corporativa", descKey: "downloads.corporativaDesc", pdf: "/docs/metagra-group.pdf" },
-];
-
-interface DownloadRowProps {
-  nameKey: string;
-  descKey: string;
-  pdf: string;
-  t: (key: string) => string;
-}
-
-const DownloadRow = ({ nameKey, descKey, pdf, t }: DownloadRowProps) => (
-  <a
-    href={pdf}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center gap-4 px-4 py-3.5 border-b border-border last:border-b-0 hover:bg-card transition-colors group"
-  >
-    <FileText size={18} className="text-muted-foreground shrink-0" />
-    <div className="flex-1 min-w-0">
-      <span className="text-sm font-semibold text-foreground">{t(nameKey)}</span>
-      {descKey && (
-        <span className="text-sm text-muted-foreground ml-1.5">· {t(descKey)}</span>
-      )}
-    </div>
-    <span className="flex items-center gap-1.5 text-mgaccent text-sm font-semibold shrink-0 group-hover:underline">
-      <Download size={14} />
-      {t("downloads.downloadBtn")}
-    </span>
-  </a>
-);
 
 export const DescargasSection = () => {
   const { t } = useTranslation();
 
+  const docs = [
+    {
+      icon: FileText,
+      badge: "PDF · Catálogo técnico",
+      nameKey: "downloads.catalogo",
+      descKey: "downloads.catalogoDesc",
+      pdf: "/docs/catalogo-metagra.pdf",
+      ariaLabel: "Descargar catálogo técnico de Metagra en PDF",
+    },
+    {
+      icon: ShieldCheck,
+      badge: "PDF · Pack de certificados",
+      nameKey: "downloads.certsPack",
+      descKey: "downloads.certsPackDesc",
+      pdf: "/docs/certificados-metagra.pdf",
+      ariaLabel: "Descargar pack completo de certificados ISO de Metagra en PDF",
+    },
+  ];
+
   return (
-    <section id="descargas" className="bg-background py-[140px] px-6 lg:px-[60px]">
+    <section
+      id="descargas"
+      aria-label="Sección de descargas"
+      className="bg-background py-[140px] px-6 lg:px-[60px]"
+    >
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -57,8 +39,11 @@ export const DescargasSection = () => {
         transition={{ duration: 0.7, ease: SMOOTH_EASE }}
         className="max-w-3xl mb-14"
       >
-        <SectionLabel number="09">{t("downloads.title")}</SectionLabel>
-        <h2 className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
+        <SectionLabel>{t("downloads.title")}</SectionLabel>
+        <h2
+          className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight"
+          style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
+        >
           {t("downloads.title")}
         </h2>
         <p className="mt-4 text-base text-muted-foreground leading-relaxed">
@@ -66,40 +51,63 @@ export const DescargasSection = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Column A: Certificados */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-        >
-          <h3 className="font-head font-bold text-foreground text-sm tracking-[0.15em] uppercase mb-4 text-muted-foreground">
-            {t("downloads.certsColumn")}
-          </h3>
-          <div className="border border-border bg-card/50">
-            {certDownloads.map((d) => (
-              <DownloadRow key={d.nameKey} {...d} t={t} />
-            ))}
-          </div>
-        </motion.div>
+      {/* 2 columnas: catálogo + certificados */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[2px] bg-border/40">
+        {docs.map((doc, i) => {
+          const Icon = doc.icon;
+          return (
+            <motion.a
+              key={doc.nameKey}
+              href={doc.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={doc.ariaLabel}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: SMOOTH_EASE }}
+              className="group flex flex-col bg-card p-10 lg:p-12 relative overflow-hidden hover:bg-mgsurface transition-colors duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mgaccent"
+            >
+              {/* Línea de acento izquierda en hover */}
+              <div className="absolute top-0 left-0 w-[3px] h-0 bg-mgaccent transition-all duration-500 group-hover:h-full" aria-hidden="true" />
 
-        {/* Column B: Catálogos */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1, ease: SMOOTH_EASE }}
-        >
-          <h3 className="font-head font-bold text-foreground text-sm tracking-[0.15em] uppercase mb-4 text-muted-foreground">
-            {t("downloads.catalogsColumn")}
-          </h3>
-          <div className="border border-border bg-card/50">
-            {catalogDownloads.map((d) => (
-              <DownloadRow key={d.nameKey} {...d} t={t} />
-            ))}
-          </div>
-        </motion.div>
+              {/* Icono */}
+              <Icon
+                className="w-12 h-12 text-mgaccent mb-7 group-hover:scale-110 transition-transform duration-500"
+                strokeWidth={1.25}
+                aria-hidden="true"
+              />
+
+              {/* Badge */}
+              <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-3">
+                {doc.badge}
+              </div>
+
+              {/* Título */}
+              <h3
+                className="font-head font-bold text-foreground tracking-[0.04em] uppercase mb-4 leading-tight"
+                style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)" }}
+              >
+                {t(doc.nameKey)}
+              </h3>
+
+              {/* Descripción */}
+              <p className="text-[0.95rem] text-mgsteel leading-relaxed font-light mb-10 flex-1">
+                {t(doc.descKey)}
+              </p>
+
+              {/* CTA */}
+              <div
+                className="inline-flex items-center gap-2 text-mgaccent font-head font-bold text-[0.8rem] tracking-[0.18em] uppercase group-hover:gap-3 transition-all"
+                aria-hidden="true"
+              >
+                <Download size={14} strokeWidth={2} />
+                <span>{t("downloads.downloadBtn")}</span>
+                <ArrowRight size={14} strokeWidth={2} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </motion.a>
+          );
+        })}
       </div>
     </section>
   );

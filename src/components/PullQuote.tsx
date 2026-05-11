@@ -13,13 +13,6 @@ export const PullQuote = () => {
       className="py-[120px] lg:py-[160px] px-6 lg:px-[60px] border-y border-border bg-mgbg2/50 relative z-[2]"
     >
       <div className="max-w-[980px] mx-auto text-center">
-        <div className="inline-flex items-center gap-3 mb-8">
-          <span className="font-mono text-[0.78rem] tracking-[0.2em] text-mgaccent">★</span>
-          <span className="w-7 h-[1px] bg-mgaccent" />
-          <span className="font-mono text-[0.7rem] tracking-[0.3em] uppercase text-mgaccent">
-            {t("pullquote.label")}
-          </span>
-        </div>
         <blockquote
           className="font-head font-bold uppercase leading-[1] tracking-tight text-foreground"
           style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)" }}

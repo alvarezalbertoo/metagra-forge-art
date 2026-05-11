@@ -14,13 +14,18 @@ export const CinematicBleed = () => {
       <img
         src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=2000&q=85"
         alt="Detalle industrial Metagra"
-        className="w-full h-full object-cover grayscale-[40%] contrast-110"
+        className="w-full h-full object-cover grayscale contrast-125 brightness-75"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-mgbg/85 via-mgbg/30 to-mgbg/70" />
-      <div className="absolute inset-0 bg-mgaccent/[0.08] mix-blend-multiply" />
+      {/* Capa 1: tinte navy fuerte (duotono) */}
+      <div className="absolute inset-0 bg-mgaccent/40 mix-blend-multiply" />
+      {/* Capa 2: degradado izquierda → derecha para legibilidad del texto */}
+      <div className="absolute inset-0 bg-gradient-to-r from-mgbg via-mgbg/60 to-mgbg/20" />
+      {/* Capa 3: overlay oscuro sutil para mejor contraste global */}
+      <div className="absolute inset-0 bg-foreground/20" />
+
       <div className="absolute inset-0 flex items-center px-6 lg:px-[60px]">
-        <div className="max-w-[640px]">
+        <div className="max-w-[640px] relative z-[2]">
           <div className="font-mono text-[0.7rem] tracking-[0.25em] uppercase text-mgaccent mb-4">
             ★ Cold Forging · Bergara ⇄ Guanajuato
           </div>
@@ -29,7 +34,7 @@ export const CinematicBleed = () => {
             style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)" }}
           >
             Acero forjado<br />
-            <span className="text-outline-accent">a contrarreloj</span>
+            <span className="text-mgaccent">a contrarreloj</span>
           </h3>
         </div>
       </div>
