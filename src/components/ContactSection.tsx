@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import { MapPin, Phone, Globe } from "lucide-react";
 
 type ContactFormData = {
+  sedeSeleccionada: "España" | "México";
   nombre: string;
   empresa?: string;
   email: string;
@@ -21,10 +22,12 @@ type ContactFormData = {
 
 export const ContactSection = () => {
   const [sending, setSending] = useState(false);
-  const [activeCountry, setActiveCountry] = useState<"es" | "mx">("es");
   const { t } = useTranslation();
 
   const contactSchema = z.object({
+    sedeSeleccionada: z.enum(["España", "México"], {
+      required_error: "Selecciona una sede",
+    }),
     nombre: z.string().trim().min(1, t("contact.nombreReq")).max(100),
     empresa: z.string().trim().max(100).optional(),
     email: z.string().trim().email(t("contact.emailReq")).max(255),
@@ -36,15 +39,22 @@ export const ContactSection = () => {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: {
+      sedeSeleccionada: "España",
+    },
   });
+
+  const selectedCountry = watch("sedeSeleccionada");
 
   const countryData = useMemo(
     () => ({
-      es: [
+      España: [
         {
           icon: MapPin,
           label: t("contact.address"),
@@ -62,7 +72,7 @@ export const ContactSection = () => {
           value: "España · Bergara · Gipuzkoa",
         },
       ],
-      mx: [
+      México: [
         {
           icon: MapPin,
           label: t("contact.address"),
@@ -84,20 +94,25 @@ export const ContactSection = () => {
     [t]
   );
 
-  const contactDetails = countryData[activeCountry];
+  const contactDetails = countryData[selectedCountry];
 
   const onSubmit = async (data: ContactFormData) => {
     setSending(true);
     try {
       const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: {
-          ...data,
-          sedeSeleccionada: activeCountry === "es" ? "España" : "México",
-        },
+        body: data,
       });
       if (error) throw error;
       toast.success(t("contact.success"));
-      reset();
+      reset({
+        sedeSeleccionada: "España",
+        nombre: "",
+        empresa: "",
+        email: "",
+        telefono: "",
+        area: "",
+        mensaje: "",
+      });
     } catch (err) {
       console.error(err);
       toast.error(t("contact.error"));
@@ -127,9 +142,9 @@ export const ContactSection = () => {
           <div className="inline-flex border border-border mb-8 bg-mgsurface">
             <button
               type="button"
-              onClick={() => setActiveCountry("es")}
+              onClick={() => setValue("sedeSeleccionada", "España")}
               className={`px-5 py-3 font-mono text-[0.68rem] tracking-[0.18em] uppercase transition-colors ${
-                activeCountry === "es"
+                selectedCountry === "España"
                   ? "bg-mgaccent text-white"
                   : "text-foreground hover:bg-mgaccent/10"
               }`}
@@ -138,9 +153,9 @@ export const ContactSection = () => {
             </button>
             <button
               type="button"
-              onClick={() => setActiveCountry("mx")}
+              onClick={() => setValue("sedeSeleccionada", "México")}
               className={`px-5 py-3 font-mono text-[0.68rem] tracking-[0.18em] uppercase transition-colors border-l border-border ${
-                activeCountry === "mx"
+                selectedCountry === "México"
                   ? "bg-mgaccent text-white"
                   : "text-foreground hover:bg-mgaccent/10"
               }`}
@@ -174,6 +189,19 @@ export const ContactSection = () => {
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2} variants={revealVariants}>
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <label className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-mgmuted">
+                Enviar a
+              </label>
+              <select {...register("sedeSeleccionada")} className={inputClass + " appearance-none"}>
+                <option value="España">España</option>
+                <option value="México">México</option>
+              </select>
+              {errors.sedeSeleccionada && (
+                <span className="text-[0.7rem] text-destructive">{errors.sedeSeleccionada.message}</span>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
                 <label className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-mgmuted">
