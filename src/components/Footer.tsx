@@ -54,29 +54,36 @@ export const Footer = () => {
         {/* Sede España */}
         <div className="lg:border-l lg:border-border lg:pl-8 xl:pl-[60px]">
           <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-3">España · Bergara</div>
-          <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">{t("footer.sedePrincipal")}</h5>
+          <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">
+            {t("footer.sedePrincipal")}
+          </h5>
           <div className="flex items-start gap-2.5 text-[0.85rem] text-mgmuted leading-relaxed mb-3">
             <MapPin size={14} strokeWidth={1.5} className="mt-0.5 flex-shrink-0 text-mgaccent" />
             <span>Amilaga, 22<br />20570 Bergara, Gipuzkoa</span>
           </div>
           <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
             <Phone size={14} strokeWidth={1.5} className="text-mgaccent" />
-            <a href="tel:+34943761348" className="hover:text-mgaccent transition-colors">+34 943 761 348</a>
+            <a href="tel:+34943761348" className="hover:text-mgaccent transition-colors">
+              +34 943 761 348
+            </a>
           </div>
         </div>
 
         {/* Sede México */}
         <div className="lg:border-l lg:border-border lg:pl-8 xl:pl-[60px]">
           <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-3">México · Guanajuato</div>
-          <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">{t("footer.plantaProductiva")}</h5>
+          <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">
+            {t("footer.plantaProductiva")}
+          </h5>
           <div className="flex items-start gap-2.5 text-[0.85rem] text-mgmuted leading-relaxed mb-3">
             <MapPin size={14} strokeWidth={1.5} className="mt-0.5 flex-shrink-0 text-mgaccent" />
             <span>Parque Industrial La Amistad<br />38199 Guanajuato, México</span>
           </div>
           <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
             <Phone size={14} strokeWidth={1.5} className="text-mgaccent" />
-            {/* TODO: añadir teléfono México */}
-            <span>—</span>
+            <a href="tel:+524612027500" className="hover:text-mgaccent transition-colors">
+              +52 461 202 75 00
+            </a>
           </div>
         </div>
       </div>
