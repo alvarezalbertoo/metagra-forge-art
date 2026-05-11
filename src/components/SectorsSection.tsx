@@ -16,8 +16,8 @@ export const SectorsSection = () => {
   const [active, setActive] = useState(0);
 
   const sectors = [
-    { icon: Car, tag: t("sectors.s1Tag"), title: t("sectors.s1Title"), desc: t("sectors.s1Desc"), ...patterns[0] },
-    { icon: Train, tag: t("sectors.s2Tag"), title: t("sectors.s2Title"), desc: t("sectors.s2Desc"), ...patterns[1] },
+    { icon: Car,     tag: t("sectors.s1Tag"), title: t("sectors.s1Title"), desc: t("sectors.s1Desc"), ...patterns[0] },
+    { icon: Train,   tag: t("sectors.s2Tag"), title: t("sectors.s2Title"), desc: t("sectors.s2Desc"), ...patterns[1] },
     { icon: Factory, tag: t("sectors.s3Tag"), title: t("sectors.s3Title"), desc: t("sectors.s3Desc"), ...patterns[2] },
   ];
 
@@ -28,14 +28,27 @@ export const SectorsSection = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-[72px]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
           <SectionLabel number="06">{t("sectors.label")}</SectionLabel>
-          <h2 className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
-            {t("sectors.title1")}<br /><span className="text-outline">{t("sectors.title2")}</span>
+          <h2
+            className="font-head font-extrabold uppercase leading-[0.9] tracking-tight text-foreground"
+            style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
+          >
+            {t("sectors.title1")}<br />
+            <span className="text-outline">{t("sectors.title2")}</span>
           </h2>
         </motion.div>
-        <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1} variants={revealVariants} className="text-mgsteel text-[0.95rem] leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: t("sectors.desc") }} />
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={1}
+          variants={revealVariants}
+          className="text-mgsteel text-[0.95rem] leading-relaxed font-light"
+          dangerouslySetInnerHTML={{ __html: t("sectors.desc") }}
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-[2px] border border-border bg-mgbg3">
+        {/* Lista de sectores */}
         <div className="lg:col-span-4 flex flex-col">
           {sectors.map((sector, i) => {
             const isActive = i === active;
@@ -45,36 +58,59 @@ export const SectorsSection = () => {
                 onClick={() => setActive(i)}
                 aria-pressed={isActive}
                 aria-label={`Ver sector: ${sector.title}`}
-                className={`relative text-left p-7 border-b border-border last:border-b-0 transition-all duration-300 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-mgaccent ${isActive ? "bg-mgsurface" : "bg-mgbg2 hover:bg-mgsurface/60"}`}
+                className={`relative text-left p-7 border-b border-border last:border-b-0 transition-all duration-300 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-mgaccent ${
+                  isActive ? "bg-mgsurface" : "bg-mgbg2 hover:bg-mgsurface/60"
+                }`}
               >
-                <span className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 ${isActive ? "bg-mgaccent" : "bg-transparent"}`} />
+                <span
+                  className={`absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 ${
+                    isActive ? "bg-mgaccent" : "bg-transparent"
+                  }`}
+                />
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 border flex items-center justify-center transition-all duration-300 ${isActive ? "border-mgaccent bg-mgaccent/10" : "border-border"}`}>
+                  <div
+                    className={`w-10 h-10 border flex items-center justify-center transition-all duration-300 ${
+                      isActive ? "border-mgaccent bg-mgaccent/10" : "border-border"
+                    }`}
+                  >
                     <sector.icon className="w-5 h-5 text-mgaccent" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <div className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-mgaccent mb-1">{sector.tag}</div>
-                    <h3 className="font-head font-extrabold text-[1.15rem] uppercase tracking-[0.05em] text-foreground">{sector.title}</h3>
+                    <div className="font-mono text-[0.62rem] tracking-[0.2em] uppercase text-mgaccent mb-1">
+                      {sector.tag}
+                    </div>
+                    <h3 className="font-head font-extrabold text-[1.15rem] uppercase tracking-[0.05em] text-foreground">
+                      {sector.title}
+                    </h3>
                   </div>
                 </div>
               </button>
             );
           })}
         </div>
+
+        {/* Panel derecho — sin min-h fijo, altura igualada a la columna izquierda */}
         <motion.div
           key={active}
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:col-span-8 relative min-h-[420px] overflow-hidden bg-gradient-to-br from-mgsurface to-mgbg"
+          className="lg:col-span-8 relative overflow-hidden bg-gradient-to-br from-mgsurface to-mgbg self-stretch"
         >
           <div
             className="absolute inset-0 opacity-[0.22]"
-            style={{ background: current.pattern, ...(current.patternSize ? { backgroundSize: current.patternSize } : {}) }}
+            style={{
+              background: current.pattern,
+              ...(current.patternSize ? { backgroundSize: current.patternSize } : {}),
+            }}
           />
-          <div className="absolute inset-0 p-10 lg:p-14 flex flex-col justify-end bg-gradient-to-t from-mgbg/90 via-mgbg/40 to-transparent">
-            <h3 className="font-head font-extrabold text-[2.2rem] lg:text-[2.8rem] uppercase tracking-tight text-foreground mb-4">{current.title}</h3>
-            <p className="text-[0.95rem] text-mgsteel leading-relaxed max-w-[640px]">{current.desc}</p>
+          <div className="relative z-[1] p-10 lg:p-14 flex flex-col justify-center h-full">
+            <h3 className="font-head font-extrabold text-[2.2rem] lg:text-[2.8rem] uppercase tracking-tight text-foreground mb-4">
+              {current.title}
+            </h3>
+            <p className="text-[0.95rem] text-mgsteel leading-relaxed max-w-[640px]">
+              {current.desc}
+            </p>
           </div>
         </motion.div>
       </div>

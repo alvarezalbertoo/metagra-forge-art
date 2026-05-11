@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ShieldCheck, Trophy, Star, Award, Download } from "lucide-react";
+import { ShieldCheck, Trophy, Star, Award, Download, ExternalLink } from "lucide-react";
 import { SMOOTH_EASE } from "@/lib/animations";
 import { SectionLabel } from "@/components/SectionLabel";
 
@@ -46,7 +46,6 @@ export const CertificacionesSection = () => {
 
   return (
     <section id="calidad" className="bg-background py-[140px] px-6 lg:px-[60px]">
-      {/* Intro */}
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -54,8 +53,13 @@ export const CertificacionesSection = () => {
         transition={{ duration: 0.7, ease: SMOOTH_EASE }}
         className="max-w-3xl mb-16"
       >
-        <SectionLabel number="08">{t("certs.label") !== "certs.label" ? t("certs.label") : "Certificaciones"}</SectionLabel>
-        <h2 className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}>
+        <SectionLabel number="08">
+          {t("certs.label") !== "certs.label" ? t("certs.label") : "Certificaciones"}
+        </SectionLabel>
+        <h2
+          className="font-head font-black text-foreground uppercase leading-[0.9] tracking-tight"
+          style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
+        >
           {t("certs.title")}
         </h2>
         <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-2xl">
@@ -63,7 +67,6 @@ export const CertificacionesSection = () => {
         </p>
       </motion.div>
 
-      {/* Certificates Grid 2x2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
         {certificates.map((cert, i) => (
           <motion.div
@@ -98,7 +101,6 @@ export const CertificacionesSection = () => {
         ))}
       </div>
 
-      {/* Política Integrada */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -123,7 +125,6 @@ export const CertificacionesSection = () => {
         </a>
       </motion.div>
 
-      {/* Premios */}
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -138,60 +139,48 @@ export const CertificacionesSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {awards.map((award, i) => (
-          <motion.article
+          <motion.a
             key={award.titleKey}
+            href={award.doc}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={award.docAlt}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1, ease: SMOOTH_EASE }}
-            className="bg-card border border-border rounded-sm overflow-hidden flex flex-col hover:border-mgaccent/50 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300"
+            className="group bg-card border border-border rounded-sm flex flex-col cursor-pointer hover:border-mgaccent/60 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] active:scale-[0.99] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent"
           >
-            {/* Cabecera del premio */}
-            <header className="p-7 pb-5">
+            <div className="p-7">
               <div className="flex items-center justify-between mb-4">
                 <award.icon size={26} className="text-mgaccent" strokeWidth={1.5} />
-                {award.year && (
-                  <span className="font-mono text-[0.65rem] tracking-[0.22em] uppercase text-mgaccent">
-                    {award.year}
-                  </span>
-                )}
+                <div className="flex items-center gap-3">
+                  {award.year && (
+                    <span className="font-mono text-[0.65rem] tracking-[0.22em] uppercase text-mgaccent">
+                      {award.year}
+                    </span>
+                  )}
+                  <ExternalLink
+                    size={14}
+                    className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  />
+                </div>
               </div>
+
               <h4 className="font-head font-bold text-foreground text-lg tracking-[0.04em] uppercase leading-snug mb-3">
                 {t(award.titleKey)}
               </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 {t(award.descKey)}
               </p>
-            </header>
 
-            {/* Documento embebido visible por defecto */}
-            <figure className="mt-auto bg-mgbg2/40 border-t border-border p-4">
-              {award.docType === "image" ? (
-                <img
-                  src={award.doc}
-                  alt={award.docAlt}
-                  loading="lazy"
-                  className="w-full h-[420px] object-contain bg-white rounded-sm shadow-sm"
-                />
-              ) : (
-                <object
-                  data={`${award.doc}#view=FitH&toolbar=0&navpanes=0`}
-                  type="application/pdf"
-                  aria-label={award.docAlt}
-                  className="w-full h-[420px] bg-white rounded-sm shadow-sm"
-                >
-                  <a
-                    href={award.doc}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block p-6 text-center text-sm text-mgaccent underline"
-                  >
-                    {award.docAlt}
-                  </a>
-                </object>
-              )}
-            </figure>
-          </motion.article>
+              <div className="inline-flex items-center gap-2 text-mgaccent text-xs font-semibold tracking-[0.14em] uppercase border border-mgaccent/30 px-3 py-1.5 rounded-sm group-hover:bg-mgaccent/8 transition-colors">
+                <ExternalLink size={11} strokeWidth={2} />
+                Ver diploma
+              </div>
+            </div>
+          </motion.a>
         ))}
       </div>
     </section>

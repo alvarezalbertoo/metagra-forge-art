@@ -23,7 +23,7 @@ export const HeroSection = () => {
         }}
       />
 
-      {/* Línea acento izquierda */}
+      {/* LÃ­nea acento izquierda */}
       <div
         className="absolute left-0 bottom-0 w-[3px] h-[55%] z-[3]"
         style={{ background: "linear-gradient(to top, #344964, transparent)" }}
@@ -31,7 +31,7 @@ export const HeroSection = () => {
 
       {/* Contenedor principal split 55/45 */}
       <div className="relative z-[2] grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] w-full">
-        {/* LADO IZQUIERDO — texto */}
+        {/* LADO IZQUIERDO â€” texto */}
         <motion.div
           className="flex flex-col justify-center px-6 lg:px-[60px] py-32 lg:py-32 max-w-[760px]"
           variants={stagger}
@@ -84,13 +84,13 @@ export const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* LADO DERECHO — composición visual industrial con duotono navy */}
+        {/* LADO DERECHO â€” composiciÃ³n visual industrial con duotono navy */}
         <div className="relative hidden lg:block">
           <div className="absolute inset-0">
-            {/* TODO: foto real Metagra (pieza/máquina/forja) */}
+            {/* TODO: foto real Metagra (pieza/mÃ¡quina/forja) */}
             <img
               src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85"
-              alt="Instalaciones industriales de fabricación de piezas metálicas por estampación en frío"
+              alt="Instalaciones industriales de fabricaciÃ³n de piezas metÃ¡licas por estampaciÃ³n en frÃ­o"
               className="w-full h-full object-cover grayscale contrast-125 brightness-90"
               loading="eager"
             />
@@ -98,7 +98,7 @@ export const HeroSection = () => {
             <div className="absolute inset-0 bg-mgaccent/30 mix-blend-multiply" />
             {/* Capa 2: degradado del lado izquierdo (donde va el texto) */}
             <div className="absolute inset-0 bg-gradient-to-r from-mgbg via-mgbg/70 to-mgbg/10" />
-            {/* Capa 3: viñeta inferior */}
+            {/* Capa 3: viÃ±eta inferior */}
             <div className="absolute inset-0 bg-gradient-to-t from-mgbg/40 to-transparent" />
           </div>
         </div>

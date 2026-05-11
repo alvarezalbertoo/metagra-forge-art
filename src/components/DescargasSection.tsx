@@ -10,15 +10,15 @@ export const DescargasSection = () => {
   const docs = [
     {
       icon: FileText,
-      badge: "PDF · Catálogo técnico",
+      badge: "PDF Â· CatÃ¡logo tÃ©cnico",
       nameKey: "downloads.catalogo",
       descKey: "downloads.catalogoDesc",
       pdf: "/docs/catalogo-metagra.pdf",
-      ariaLabel: "Descargar catálogo técnico de Metagra en PDF",
+      ariaLabel: "Descargar catÃ¡logo tÃ©cnico de Metagra en PDF",
     },
     {
       icon: ShieldCheck,
-      badge: "PDF · Pack de certificados",
+      badge: "PDF Â· Pack de certificados",
       nameKey: "downloads.certsPack",
       descKey: "downloads.certsPackDesc",
       pdf: "/docs/certificados-metagra.pdf",
@@ -29,7 +29,7 @@ export const DescargasSection = () => {
   return (
     <section
       id="descargas"
-      aria-label="Sección de descargas"
+      aria-label="SecciÃ³n de descargas"
       className="bg-background py-[140px] px-6 lg:px-[60px]"
     >
       <motion.div
@@ -51,7 +51,7 @@ export const DescargasSection = () => {
         </p>
       </motion.div>
 
-      {/* 2 columnas: catálogo + certificados */}
+      {/* 2 columnas: catÃ¡logo + certificados */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-[2px] bg-border/40">
         {docs.map((doc, i) => {
           const Icon = doc.icon;
@@ -68,7 +68,7 @@ export const DescargasSection = () => {
               transition={{ duration: 0.6, delay: i * 0.12, ease: SMOOTH_EASE }}
               className="group flex flex-col bg-card p-10 lg:p-12 relative overflow-hidden hover:bg-mgsurface transition-colors duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mgaccent"
             >
-              {/* Línea de acento izquierda en hover */}
+              {/* LÃ­nea de acento izquierda en hover */}
               <div className="absolute top-0 left-0 w-[3px] h-0 bg-mgaccent transition-all duration-500 group-hover:h-full" aria-hidden="true" />
 
               {/* Icono */}
@@ -83,7 +83,7 @@ export const DescargasSection = () => {
                 {doc.badge}
               </div>
 
-              {/* Título */}
+              {/* TÃ­tulo */}
               <h3
                 className="font-head font-bold text-foreground tracking-[0.04em] uppercase mb-4 leading-tight"
                 style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)" }}
@@ -91,7 +91,7 @@ export const DescargasSection = () => {
                 {t(doc.nameKey)}
               </h3>
 
-              {/* Descripción */}
+              {/* DescripciÃ³n */}
               <p className="text-[0.95rem] text-mgsteel leading-relaxed font-light mb-10 flex-1">
                 {t(doc.descKey)}
               </p>
