@@ -24,7 +24,7 @@ export const SectorsSection = () => {
   const current = sectors[active];
 
   return (
-    <section id="clientes" className="bg-mgbg2 px-6 lg:px-[60px] py-[140px] relative z-[2]">
+    <section id="sectores" className="bg-mgbg2 px-6 lg:px-[60px] py-[140px] relative z-[2]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-[72px]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
           <SectionLabel number="06">{t("sectors.label")}</SectionLabel>

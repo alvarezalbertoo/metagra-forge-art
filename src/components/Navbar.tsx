@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
@@ -25,11 +25,12 @@ export const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
-    { label: t("nav.grupo"), href: "/grupo" },
-    { label: t("nav.tecnologias"), href: "/tecnologias" },
-    { label: t("nav.sectores"), href: "/sectores" },
-    { label: t("nav.calidad"), href: "/#calidad" },
-    { label: t("nav.descargas"), href: "/#descargas" },
+    { label: t("nav.inicio", "Inicio"), href: "#inicio" },
+    { label: t("nav.servicios", "Servicios"), href: "#servicios" },
+    { label: t("nav.calidad", "Calidad"), href: "#calidad" },
+    { label: t("nav.instalaciones", "Instalaciones"), href: "#instalaciones" },
+    { label: t("nav.sectores", "Sectores"), href: "#sectores" },
+    { label: t("nav.contacto", "Contacto"), href: "#contacto" },
   ];
 
   useEffect(() => {
@@ -45,11 +46,23 @@ export const Navbar = () => {
 
   const currentLang = i18n.language?.substring(0, 2).toUpperCase() || "ES";
 
+  const scrollToHash = (href: string) => {
+    const id = href.replace(/^#/, "");
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 350);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       {/* Skip-to-content: invisible hasta que recibe foco — esencial para teclado y lectores de pantalla */}
       <a
-        href="#main-content"
+        href="#inicio"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-6 focus:py-3 focus:bg-mgaccent focus:text-white focus:font-head focus:font-bold focus:text-sm focus:uppercase focus:tracking-wide focus:rounded-full"
       >
         Saltar al contenido principal
@@ -71,39 +84,20 @@ export const Navbar = () => {
 
         {/* Desktop links */}
         <ul className="hidden lg:flex gap-9 list-none">
-          {navLinks.map((link) => {
-            const isHash = link.href.startsWith("/#");
-            const handleHashClick = (e: React.MouseEvent) => {
-              e.preventDefault();
-              const id = link.href.slice(2);
-              if (location.pathname === "/") {
-                document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-              } else {
-                navigate("/" , { replace: false });
-                setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 300);
-              }
-            };
-            return (
-              <li key={link.href}>
-                {isHash ? (
-                  <a
-                    href={link.href}
-                    onClick={handleHashClick}
-                    className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    to={link.href}
-                    className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full"
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            );
-          })}
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHash(link.href);
+                }}
+                className="font-head text-[0.85rem] font-semibold tracking-[0.15em] uppercase text-mgsteel hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-mgaccent after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         <div className="flex items-center gap-2">
@@ -167,12 +161,13 @@ export const Navbar = () => {
           </a>
 
           {/* Botón Contacto - píldora redondeada, misma altura que LinkedIn (36px) */}
-          <Link
-            to="/contacto"
+          <a
+            href="#contacto"
+            onClick={(e) => { e.preventDefault(); scrollToHash("#contacto"); }}
             className="hidden lg:inline-flex items-center h-9 px-6 rounded-full bg-mgaccent text-white font-head font-bold text-[0.78rem] tracking-[0.18em] uppercase hover:bg-mgaccent2 hover:shadow-lg hover:shadow-mgaccent/25 hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mgaccent"
           >
             {t("nav.contacto")}
-          </Link>
+          </a>
 
           {/* Mobile hamburger */}
           <button
@@ -194,43 +189,31 @@ export const Navbar = () => {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[99] bg-mgbg pt-20 px-8 flex flex-col gap-6"
           >
-            {navLinks.map((link) => {
-              const isHash = link.href.startsWith("/#");
-              const handleMobileHash = () => {
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileOpen(false);
+                  setTimeout(() => scrollToHash(link.href), 350);
+                }}
+                className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors cursor-pointer"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contacto"
+              onClick={(e) => {
+                e.preventDefault();
                 setMobileOpen(false);
-                const id = link.href.slice(2);
-                if (location.pathname === "/") {
-                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 350);
-                } else {
-                  navigate("/");
-                  setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 600);
-                }
-              };
-              return isHash ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleMobileHash(); }}
-                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors cursor-pointer"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="font-head text-2xl font-bold tracking-[0.1em] uppercase text-mgsteel hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <Link
-              to="/contacto"
+                setTimeout(() => scrollToHash("#contacto"), 350);
+              }}
               className="font-head font-bold text-lg tracking-[0.18em] uppercase px-6 py-3 border border-mgaccent text-mgaccent hover:bg-mgaccent hover:text-white transition-all mt-4 text-center"
             >
               {t("nav.contacto")}
-            </Link>
+            </a>
             <div className="flex gap-2 mt-4">
               {languages.map((lang) => (
                 <button
