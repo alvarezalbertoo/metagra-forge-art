@@ -5,6 +5,7 @@ import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/components/ThemeProvider";
 import metagraLogo from "@/assets/metagra-logo.png";
+import linkedinIcon from "@/assets/linkedin.svg";
 
 const languages = [
   { code: "es", label: "ES" },
@@ -46,6 +47,14 @@ export const Navbar = () => {
 
   return (
     <>
+      {/* Skip-to-content: invisible hasta que recibe foco — esencial para teclado y lectores de pantalla */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-6 focus:py-3 focus:bg-mgaccent focus:text-white focus:font-head focus:font-bold focus:text-sm focus:uppercase focus:tracking-wide focus:rounded-full"
+      >
+        Saltar al contenido principal
+      </a>
+
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -97,23 +106,23 @@ export const Navbar = () => {
           })}
         </ul>
 
-        <div className="flex items-center gap-3">
-          {/* Theme toggle */}
+        <div className="flex items-center gap-2">
+          {/* Theme toggle - sin borde */}
           <button
             onClick={toggleTheme}
-            className="w-9 h-9 flex items-center justify-center border border-border text-mgsteel hover:text-foreground hover:border-mgaccent transition-all"
+            className="w-10 h-10 flex items-center justify-center text-mgsteel hover:text-mgaccent transition-colors"
             aria-label="Toggle theme"
           >
-            {theme === "dark" ? <Sun size={16} strokeWidth={1.5} /> : <Moon size={16} strokeWidth={1.5} />}
+            {theme === "dark" ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
           </button>
 
-          {/* Language switcher */}
+          {/* Language switcher - sin borde */}
           <div className="relative">
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="h-9 px-3 flex items-center gap-1.5 border border-border text-mgsteel hover:text-foreground hover:border-mgaccent transition-all font-mono text-[0.65rem] tracking-[0.15em]"
+              className="h-10 px-3 flex items-center gap-1.5 text-mgsteel hover:text-mgaccent transition-colors font-mono text-[0.7rem] tracking-[0.18em]"
             >
-              <Globe size={14} strokeWidth={1.5} />
+              <Globe size={15} strokeWidth={1.5} />
               {currentLang}
             </button>
             <AnimatePresence>
@@ -146,9 +155,21 @@ export const Navbar = () => {
             </AnimatePresence>
           </div>
 
+          {/* LinkedIn - badge directo, sin contenedor con borde */}
+          <a
+            href="https://es.linkedin.com/company/metagra-group"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn de Metagra Group (abre en nueva pestaña)"
+            className="hidden lg:inline-flex items-center justify-center hover:opacity-80 hover:scale-105 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mgaccent"
+          >
+            <img src={linkedinIcon} alt="" aria-hidden="true" className="w-9 h-9" />
+          </a>
+
+          {/* Botón Contacto - píldora redondeada, misma altura que LinkedIn (36px) */}
           <Link
             to="/contacto"
-            className="hidden lg:inline-block font-head font-bold text-[0.8rem] tracking-[0.18em] uppercase px-6 py-2.5 border border-mgaccent text-mgaccent hover:bg-mgaccent hover:text-white transition-all duration-300"
+            className="hidden lg:inline-flex items-center h-9 px-6 rounded-full bg-mgaccent text-white font-head font-bold text-[0.78rem] tracking-[0.18em] uppercase hover:bg-mgaccent2 hover:shadow-lg hover:shadow-mgaccent/25 hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mgaccent"
           >
             {t("nav.contacto")}
           </Link>

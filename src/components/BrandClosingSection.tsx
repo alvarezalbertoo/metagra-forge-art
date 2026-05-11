@@ -7,18 +7,20 @@ export const BrandClosingSection = () => {
   const { t } = useTranslation();
   return (
     <section className="bg-foreground text-background relative overflow-hidden py-[100px] lg:py-[140px] px-6 lg:px-[60px]">
+      {/* Wordmark METAGRA gigante en la parte INFERIOR (no centrado, así no choca con el texto) */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-1/2 -translate-y-1/2 pointer-events-none select-none whitespace-nowrap text-center"
+        className="absolute inset-x-0 bottom-[-2vw] pointer-events-none select-none whitespace-nowrap text-center"
       >
         <span
-          className="font-head font-black uppercase tracking-tighter leading-none text-background/[0.08]"
-          style={{ fontSize: "clamp(8rem, 22vw, 26rem)" }}
+          className="font-head font-black uppercase tracking-tighter leading-none text-background/[0.06] block"
+          style={{ fontSize: "clamp(7rem, 18vw, 22rem)" }}
         >
           METAGRA
         </span>
       </div>
 
+      {/* Contenido al frente, centrado en la parte superior */}
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -33,14 +35,18 @@ export const BrandClosingSection = () => {
           className="font-head font-extrabold uppercase leading-[0.95] tracking-tight"
           style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
         >
-          {t("closing.title1")}<br />
+          {t("closing.title1")}
+          <br />
           <span className="text-mgaccent">{t("closing.title2")}</span>
         </h2>
         <p className="mt-7 text-background/70 text-[0.95rem] leading-relaxed font-light max-w-[560px] mx-auto">
           {t("closing.desc")}
         </p>
         <div className="mt-10 flex flex-wrap gap-4 justify-center">
-          <Link to="/contacto" className="font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-white hover:-translate-y-0.5 transition-transform inline-flex items-center gap-3">
+          <Link
+            to="/contacto"
+            className="font-head font-bold text-[0.85rem] tracking-[0.2em] uppercase px-9 py-4 bg-mgaccent text-white hover:-translate-y-0.5 transition-transform inline-flex items-center gap-3"
+          >
             {t("closing.cta")} <ArrowRight size={16} />
           </Link>
         </div>
