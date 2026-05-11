@@ -47,8 +47,8 @@ export const HeroSection = () => {
 
           <motion.h1
             variants={fadeUp}
-            className="font-head font-black text-foreground uppercase leading-[0.92] tracking-tight"
-            style={{ fontSize: "clamp(3.4rem, 6.5vw, 6.8rem)" }}
+            className="font-head font-black text-foreground uppercase leading-[1.02]"
+            style={{ fontSize: "clamp(3.4rem, 6.5vw, 6.8rem)", letterSpacing: "0.02em", wordSpacing: "0.05em" }}
           >
             {t("hero.title1")}<br />{t("hero.title2")}{" "}
             <span className="text-mgaccent">{t("hero.title3")}</span>
@@ -56,14 +56,14 @@ export const HeroSection = () => {
 
           <motion.p
             variants={fadeUp}
-            className="mt-5 font-head font-semibold text-mgaccent uppercase tracking-[0.18em] text-[0.95rem] lg:text-[1.05rem]"
+            className="mt-6 font-head font-semibold text-mgaccent uppercase tracking-[0.24em] text-[0.95rem] lg:text-[1.05rem] leading-relaxed"
           >
             {t("hero.subTagline")}
           </motion.p>
 
           <motion.p
             variants={fadeUp}
-            className="mt-7 text-base font-light leading-relaxed text-mgsteel max-w-[520px]"
+            className="mt-8 text-base font-light leading-[1.75] text-mgsteel max-w-[520px]"
             dangerouslySetInnerHTML={{ __html: t("hero.desc") }}
           />
 
