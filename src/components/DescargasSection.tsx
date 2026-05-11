@@ -17,13 +17,13 @@ export const DescargasSection = () => {
       ariaLabel: "Descargar catÃ¡logo tÃ©cnico de Metagra en PDF",
     },
     {
-      icon: ShieldCheck,
-      badge: "PDF Â· Pack de certificados",
-      nameKey: "downloads.certsPack",
-      descKey: "downloads.certsPackDesc",
-      pdf: "/docs/certificados-metagra.pdf",
-      ariaLabel: "Descargar pack completo de certificados ISO de Metagra en PDF",
-    },
+    icon: ShieldCheck,
+    badge: "PDF · Pack de certificados",
+    nameKey: "downloads.certsPack",
+    descKey: "downloads.certsPackDesc",
+    pdf: "/docs/pack-certificados-metagra.pdf",
+    ariaLabel: "Descargar pack completo de certificados ISO de Metagra en PDF",
+    }
   ];
 
   return (
