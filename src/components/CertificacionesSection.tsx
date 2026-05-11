@@ -16,16 +16,28 @@ const awards = [
     icon: Trophy,
     titleKey: "certs.award1Title",
     descKey: "certs.award1Desc",
+    year: "2016",
+    doc: "/awards/bosch-preferred-supplier-2016.jpg",
+    docType: "image" as const,
+    docAlt: "Diploma Preferred Supplier of the Bosch Group 2016 otorgado a Metagra Bergara, S.A.",
   },
   {
     icon: Star,
     titleKey: "certs.award2Title",
     descKey: "certs.award2Desc",
+    year: "2006",
+    doc: "/awards/psa-peugeot-citroen-2006.jpg",
+    docType: "image" as const,
+    docAlt: "Certificat Qualité 2006 PSA Peugeot Citroën entregado a Metagra",
   },
   {
     icon: Award,
     titleKey: "certs.award3Title",
     descKey: "certs.award3Desc",
+    year: "",
+    doc: "/awards/premio-mejor-pyme.pdf",
+    docType: "pdf" as const,
+    docAlt: "Diploma Premio Mejor PYME de Gipuzkoa otorgado a Metagra Group",
   },
 ];
 
@@ -124,22 +136,62 @@ export const CertificacionesSection = () => {
         </h3>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {awards.map((award, i) => (
-          <motion.div
+          <motion.article
             key={award.titleKey}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1, ease: SMOOTH_EASE }}
-            className="bg-card border border-border p-6 hover:border-mgaccent/50 hover:shadow-[0_0_20px_rgba(224,123,57,0.08)] transition-all duration-300"
+            className="bg-card border border-border rounded-sm overflow-hidden flex flex-col hover:border-mgaccent/50 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300"
           >
-            <award.icon size={28} className="text-mgaccent mb-4" />
-            <h4 className="font-head font-bold text-foreground text-base tracking-wide uppercase mb-2">
-              {t(award.titleKey)}
-            </h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">{t(award.descKey)}</p>
-          </motion.div>
+            {/* Cabecera del premio */}
+            <header className="p-7 pb-5">
+              <div className="flex items-center justify-between mb-4">
+                <award.icon size={26} className="text-mgaccent" strokeWidth={1.5} />
+                {award.year && (
+                  <span className="font-mono text-[0.65rem] tracking-[0.22em] uppercase text-mgaccent">
+                    {award.year}
+                  </span>
+                )}
+              </div>
+              <h4 className="font-head font-bold text-foreground text-lg tracking-[0.04em] uppercase leading-snug mb-3">
+                {t(award.titleKey)}
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {t(award.descKey)}
+              </p>
+            </header>
+
+            {/* Documento embebido visible por defecto */}
+            <figure className="mt-auto bg-mgbg2/40 border-t border-border p-4">
+              {award.docType === "image" ? (
+                <img
+                  src={award.doc}
+                  alt={award.docAlt}
+                  loading="lazy"
+                  className="w-full h-[420px] object-contain bg-white rounded-sm shadow-sm"
+                />
+              ) : (
+                <object
+                  data={`${award.doc}#view=FitH&toolbar=0&navpanes=0`}
+                  type="application/pdf"
+                  aria-label={award.docAlt}
+                  className="w-full h-[420px] bg-white rounded-sm shadow-sm"
+                >
+                  <a
+                    href={award.doc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-6 text-center text-sm text-mgaccent underline"
+                  >
+                    {award.docAlt}
+                  </a>
+                </object>
+              )}
+            </figure>
+          </motion.article>
         ))}
       </div>
     </section>
