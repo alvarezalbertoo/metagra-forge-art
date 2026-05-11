@@ -8,7 +8,7 @@ import { revealVariants } from "@/lib/animations";
 import { SectionLabel } from "@/components/SectionLabel";
 import { supabase } from "@/integrations/supabase/client";
 import { useMemo, useState } from "react";
-import { MapPin, Phone, Globe } from "lucide-react";
+import { MapPin, Phone, Globe, Mail } from "lucide-react";
 
 type ContactFormData = {
   sedeSeleccionada: "España" | "México";
@@ -67,6 +67,12 @@ export const ContactSection = () => {
           href: "tel:+34943761348",
         },
         {
+          icon: Mail,
+          label: "Email",
+          value: "info@metagra.com",
+          href: "mailto:info@metagra.com",
+        },
+        {
           icon: Globe,
           label: t("contact.international"),
           value: "España · Bergara · Gipuzkoa",
@@ -76,13 +82,19 @@ export const ContactSection = () => {
         {
           icon: MapPin,
           label: t("contact.address"),
-          value: "Paseo Amistad Bajo, Manzana 9 Parcelas 5 a 7 — Apaseo el Grande, Guanajuato, 38186",
+          value: "Paseo Amistad Bajío, Manzana 9 Parcelas 5 a 7 — Apaseo el Grande, Guanajuato, 38186",
         },
         {
           icon: Phone,
           label: t("contact.phone"),
           value: "+52 461 202 75 00",
           href: "tel:+524612027500",
+        },
+        {
+          icon: Mail,
+          label: "Email",
+          value: "info@metagra.mx",
+          href: "mailto:info@metagra.mx",
         },
         {
           icon: Globe,

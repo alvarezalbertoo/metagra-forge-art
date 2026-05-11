@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import metagraLogo from "@/assets/metagra-logo.png";
 import linkedinIcon from "@/assets/linkedin.svg";
 
@@ -29,7 +29,6 @@ export const Footer = () => {
 
   return (
     <footer className="bg-mgbg2 border-t border-border px-6 lg:px-[60px] pt-[60px] pb-8 relative z-[2]">
-      {/* Zona superior — sedes */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr_1fr] gap-12 lg:gap-[60px] pb-12 border-b border-border">
         <div>
           <img src={metagraLogo} alt="Metagra Group" className="h-10 dark:brightness-100 brightness-90" />
@@ -43,15 +42,10 @@ export const Footer = () => {
             aria-label="LinkedIn Metagra Group"
             className="mt-6 inline-flex items-center justify-center hover:opacity-80 hover:scale-105 transition-all"
           >
-            <img
-              src={linkedinIcon}
-              alt=""
-              className="w-11 h-11"
-            />
+            <img src={linkedinIcon} alt="" className="w-11 h-11" />
           </a>
         </div>
 
-        {/* Sede España */}
         <div className="lg:border-l lg:border-border lg:pl-8 xl:pl-[60px]">
           <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-3">España · Bergara</div>
           <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">
@@ -61,15 +55,20 @@ export const Footer = () => {
             <MapPin size={14} strokeWidth={1.5} className="mt-0.5 flex-shrink-0 text-mgaccent" />
             <span>Amilaga, 22<br />20570 Bergara, Gipuzkoa</span>
           </div>
-          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
+          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted mb-3">
             <Phone size={14} strokeWidth={1.5} className="text-mgaccent" />
             <a href="tel:+34943761348" className="hover:text-mgaccent transition-colors">
               +34 943 761 348
             </a>
           </div>
+          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
+            <Mail size={14} strokeWidth={1.5} className="text-mgaccent" />
+            <a href="mailto:info@metagra.com" className="hover:text-mgaccent transition-colors">
+              info@metagra.com
+            </a>
+          </div>
         </div>
 
-        {/* Sede México */}
         <div className="lg:border-l lg:border-border lg:pl-8 xl:pl-[60px]">
           <div className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-mgaccent mb-3">México · Guanajuato</div>
           <h5 className="font-head font-bold text-[1rem] uppercase tracking-[0.05em] text-foreground mb-4">
@@ -77,18 +76,23 @@ export const Footer = () => {
           </h5>
           <div className="flex items-start gap-2.5 text-[0.85rem] text-mgmuted leading-relaxed mb-3">
             <MapPin size={14} strokeWidth={1.5} className="mt-0.5 flex-shrink-0 text-mgaccent" />
-            <span>Parque Industrial La Amistad<br />38199 Guanajuato, México</span>
+            <span>Paseo Amistad Bajío, Manzana 9<br />Parcelas 5 a 7, Apaseo el Grande, Guanajuato, 38186</span>
           </div>
-          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
+          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted mb-3">
             <Phone size={14} strokeWidth={1.5} className="text-mgaccent" />
             <a href="tel:+524612027500" className="hover:text-mgaccent transition-colors">
               +52 461 202 75 00
             </a>
           </div>
+          <div className="flex items-center gap-2.5 text-[0.85rem] text-mgmuted">
+            <Mail size={14} strokeWidth={1.5} className="text-mgaccent" />
+            <a href="mailto:info@metagra.mx" className="hover:text-mgaccent transition-colors">
+              info@metagra.mx
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Zona media — links */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-[60px] py-12 border-b border-border">
         {Object.entries(footerLinks).map(([title, links]) => (
           <div key={title}>
@@ -108,7 +112,6 @@ export const Footer = () => {
         ))}
       </div>
 
-      {/* Zona inferior — copyright */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6">
         <p className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-mgmuted">
           © {new Date().getFullYear()} Metagra Group · {t("footer.rights")}
