@@ -29,7 +29,6 @@ const App = () => (
             <Route path="/contacto" element={<Contacto />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <ChatWidget />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
