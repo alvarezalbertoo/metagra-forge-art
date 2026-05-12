@@ -10,7 +10,7 @@ import Tecnologias from "./pages/Tecnologias.tsx";
 import Sectores from "./pages/Sectores.tsx";
 import Calidad from "./pages/Calidad.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import { ChatWidget } from "./components/ChatWidget";
+
 
 const queryClient = new QueryClient();
 
