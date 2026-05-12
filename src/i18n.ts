@@ -33,6 +33,18 @@ const resources = {
       marquee: {
         items: ["Estampación en Frío", "Mecanizado de Piezas", "Roscado Industrial", "Sector Automoción", "Licencia Mathread", "Certificación IATF 16949", "Bergara · Gipuzkoa"],
       },
+      clients: {
+        label: "Clientes Globales",
+        title1: "Los líderes de la industria",
+        title2: "confían en Metagra",
+        subtitle: "De Bergara y Guanajuato a 30 países en los 6 continentes. Los principales fabricantes del sector del automóvil cuentan con nuestras piezas.",
+        stat1: "Países",
+        stat2: "Continentes",
+        stat3: "Clientes de referencia",
+        prevAria: "Ver empresas anteriores",
+        nextAria: "Ver empresas siguientes",
+        dotAria: "Ir a página {{page}}",
+      },
       about: {
         label: "Quiénes Somos",
         title1: "A la vanguardia",
@@ -268,6 +280,18 @@ const resources = {
       marquee: {
         items: ["Cold Stamping", "Part Machining", "Part Threading", "Automobile Sector", "Mathread License", "IATF 16949 Certification", "Bergara · Gipuzkoa"],
       },
+      clients: {
+        label: "Global Clients",
+        title1: "The world's leading industry",
+        title2: "trusts Metagra",
+        subtitle: "From Bergara and Guanajuato to 30 countries across 6 continents. The world's leading automotive manufacturers rely on our parts.",
+        stat1: "Countries",
+        stat2: "Continents",
+        stat3: "Key clients",
+        prevAria: "View previous companies",
+        nextAria: "View next companies",
+        dotAria: "Go to page {{page}}",
+      },
       about: {
         label: "Who We Are",
         title1: "At the cutting edge",
@@ -484,6 +508,18 @@ const resources = {
       },
       marquee: {
         items: ["Estampage à Froid", "Usinage de Pièces", "Filetage de Pièces", "Secteur Automobile", "Licence Mathread", "Certification IATF 16949", "Bergara · Gipuzkoa"],
+      },
+      clients: {
+        label: "Clients Mondiaux",
+        title1: "Les leaders de l'industrie",
+        title2: "font confiance à Metagra",
+        subtitle: "De Bergara et Guanajuato vers 30 pays sur 6 continents. Les principaux fabricants automobiles comptent sur nos pièces.",
+        stat1: "Pays",
+        stat2: "Continents",
+        stat3: "Clients de référence",
+        prevAria: "Voir les entreprises précédentes",
+        nextAria: "Voir les entreprises suivantes",
+        dotAria: "Aller à la page {{page}}",
       },
       about: {
         label: "Qui Sommes-Nous",
@@ -702,6 +738,18 @@ const resources = {
       marquee: {
         items: ["Hotzeko Estanpazioa", "Piezen Mekanizazioa", "Piezen Hariztatua", "Automobilgintza Sektorea", "Mathread Lizentzia", "IATF 16949 Ziurtagiria", "Bergara · Gipuzkoa"],
       },
+      clients: {
+        label: "Bezero Globalak",
+        title1: "Industriaren liderrak",
+        title2: "Metagrarekin konfiantza",
+        subtitle: "Bergara eta Guanajuatotik 30 herrialdera 6 kontinenteetan. Automobilgintzako fabrikatzaile nagusiek gure piezetan konfiantza dute.",
+        stat1: "Herrialdeak",
+        stat2: "Kontinenteak",
+        stat3: "Erreferentziako bezeroak",
+        prevAria: "Aurreko enpresak ikusi",
+        nextAria: "Hurrengo enpresak ikusi",
+        dotAria: "{{page}}. orrira joan",
+      },
       about: {
         label: "Nor Gara",
         title1: "Teknologiaren",
@@ -918,6 +966,18 @@ const resources = {
       },
       marquee: {
         items: ["Kaltumformen", "Bearbeitung", "Gewindeschneiden", "Automobilsektor", "Mathread-Lizenz", "IATF 16949 Zertifizierung", "Bergara · Gipuzkoa"],
+      },
+      clients: {
+        label: "Globale Kunden",
+        title1: "Die führenden Unternehmen",
+        title2: "vertrauen auf Metagra",
+        subtitle: "Von Bergara und Guanajuato in 30 Länder auf 6 Kontinenten. Die weltweit führenden Automobilhersteller verlassen sich auf unsere Teile.",
+        stat1: "Länder",
+        stat2: "Kontinente",
+        stat3: "Referenzkunden",
+        prevAria: "Vorherige Unternehmen anzeigen",
+        nextAria: "Nächste Unternehmen anzeigen",
+        dotAria: "Zu Seite {{page}} gehen",
       },
       about: {
         label: "Über Uns",
