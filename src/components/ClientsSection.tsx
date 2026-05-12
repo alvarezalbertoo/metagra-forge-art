@@ -30,15 +30,15 @@ const companies = [
 ];
 
 const getVisibleCount = (width: number) => {
-  if (width >= 1024) return 3;
-  if (width >= 768) return 2;
-  return 1;
+  if (width >= 1024) return 5;
+  if (width >= 768) return 3;
+  return 2;
 };
 
 export const ClientsSection = () => {
   const { t } = useTranslation();
-  const [page, setPage] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [index, setIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(5);
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
@@ -48,39 +48,21 @@ export const ClientsSection = () => {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const totalPages = Math.ceil(companies.length / visibleCount);
+  const maxIndex = companies.length - visibleCount;
 
-  const goTo = useCallback(
-    (newPage: number, dir: number) => {
-      if (newPage < 0 || newPage >= totalPages) return;
-      setDirection(dir);
-      setPage(newPage);
-    },
-    [totalPages]
-  );
+  const prev = useCallback(() => {
+    if (index <= 0) return;
+    setDirection(-1);
+    setIndex((i) => i - 1);
+  }, [index]);
 
-  const prev = () => goTo(page - 1, -1);
-  const next = () => goTo(page + 1, 1);
+  const next = useCallback(() => {
+    if (index >= maxIndex) return;
+    setDirection(1);
+    setIndex((i) => i + 1);
+  }, [index, maxIndex]);
 
-  const visibleCompanies = companies.slice(
-    page * visibleCount,
-    page * visibleCount + visibleCount
-  );
-
-  const slideVariants = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir: number) => ({
-      x: dir > 0 ? -300 : 300,
-      opacity: 0,
-    }),
-  };
+  const visibleCompanies = companies.slice(index, index + visibleCount);
 
   const stats = [
     { num: "30+", label: t("clients.stat1") },
@@ -133,62 +115,62 @@ export const ClientsSection = () => {
 
       {/* Carrusel */}
       <div className="max-w-[1100px] mx-auto">
-        <div className="flex items-center gap-4 md:gap-6">
-          {/* Flecha izquierda — desktop al lado */}
+        <div className="flex items-center gap-6">
+          {/* Flecha izquierda */}
           <button
             onClick={prev}
-            aria-label={t("clients.prevAria", "Ver empresas anteriores")}
-            disabled={page === 0}
-            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent shrink-0 ${
-              page === 0
-                ? "opacity-40 pointer-events-none"
+            aria-label={t("clients.prevAria", "Ver empresa anterior")}
+            disabled={index === 0}
+            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
+              index === 0
+                ? "opacity-30 pointer-events-none"
                 : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
             }`}
           >
             <ChevronLeft size={20} />
           </button>
 
-          {/* Cards */}
+          {/* Lista de nombres */}
           <div className="flex-1 overflow-hidden">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={`${page}-${visibleCount}`}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="grid gap-5"
-                style={{
-                  gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
-                }}
-              >
-                {visibleCompanies.map((company) => (
-                  <div
-                    key={company}
-                    className="px-8 md:px-10 py-10 md:py-12 bg-background/[0.06] border border-background/10 hover:border-mgaccent hover:bg-background/10 transition-all duration-500 text-center group"
+            <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+              {visibleCompanies.map((company, i) => (
+                <motion.div
+                  key={company}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction > 0 ? 80 : -80 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction > 0 ? -80 : 80 }}
+                  transition={{
+                    duration: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: i * 0.04,
+                  }}
+                  className={`flex items-center justify-between py-5 group cursor-default ${
+                    i < visibleCount - 1 ? "border-b border-background/10" : ""
+                  }`}
+                >
+                  <span
+                    className="font-head font-extrabold uppercase text-background/80 tracking-tight leading-none group-hover:text-mgaccent transition-colors duration-300"
+                    style={{ fontSize: "clamp(1.3rem, 2vw, 1.9rem)" }}
                   >
-                    <div
-                      className="font-head font-extrabold uppercase text-background tracking-tight leading-tight group-hover:text-mgaccent transition-colors duration-300"
-                      style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}
-                    >
-                      {company}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
+                    {company}
+                  </span>
+                  <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-background/20 group-hover:text-mgaccent/50 transition-colors duration-300 hidden sm:block">
+                    {String(index + i + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+              ))}
             </AnimatePresence>
           </div>
 
-          {/* Flecha derecha — desktop al lado */}
+          {/* Flecha derecha */}
           <button
             onClick={next}
-            aria-label={t("clients.nextAria", "Ver empresas siguientes")}
-            disabled={page >= totalPages - 1}
-            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent shrink-0 ${
-              page >= totalPages - 1
-                ? "opacity-40 pointer-events-none"
+            aria-label={t("clients.nextAria", "Ver empresa siguiente")}
+            disabled={index >= maxIndex}
+            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
+              index >= maxIndex
+                ? "opacity-30 pointer-events-none"
                 : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
             }`}
           >
@@ -196,15 +178,15 @@ export const ClientsSection = () => {
           </button>
         </div>
 
-        {/* Flechas móvil — debajo, centradas */}
-        <div className="flex md:hidden justify-center gap-4 mt-6">
+        {/* Flechas móvil */}
+        <div className="flex md:hidden justify-center gap-4 mt-8">
           <button
             onClick={prev}
-            aria-label={t("clients.prevAria", "Ver empresas anteriores")}
-            disabled={page === 0}
-            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
-              page === 0
-                ? "opacity-40 pointer-events-none"
+            disabled={index === 0}
+            aria-label={t("clients.prevAria", "Ver empresa anterior")}
+            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all ${
+              index === 0
+                ? "opacity-30 pointer-events-none"
                 : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
             }`}
           >
@@ -212,11 +194,11 @@ export const ClientsSection = () => {
           </button>
           <button
             onClick={next}
-            aria-label={t("clients.nextAria", "Ver empresas siguientes")}
-            disabled={page >= totalPages - 1}
-            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
-              page >= totalPages - 1
-                ? "opacity-40 pointer-events-none"
+            disabled={index >= maxIndex}
+            aria-label={t("clients.nextAria", "Ver empresa siguiente")}
+            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all ${
+              index >= maxIndex
+                ? "opacity-30 pointer-events-none"
                 : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
             }`}
           >
@@ -224,20 +206,21 @@ export const ClientsSection = () => {
           </button>
         </div>
 
-        {/* Dots */}
-        <div className="flex gap-2 justify-center mt-8">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i, i > page ? 1 : -1)}
-              aria-label={t("clients.dotAria", "Ir a página {{page}}", { page: i + 1 })}
-              className={`transition-all duration-300 rounded-full ${
-                i === page
-                  ? "w-6 h-2 bg-mgaccent"
-                  : "w-2 h-2 bg-background/25 hover:bg-background/50"
-              }`}
+        {/* Progreso */}
+        <div className="flex items-center gap-4 justify-center mt-10">
+          <span className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-background/30">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="w-[160px] h-[1px] bg-background/15 relative">
+            <motion.div
+              className="absolute top-0 left-0 h-full bg-mgaccent"
+              animate={{ width: `${((index + visibleCount) / companies.length) * 100}%` }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             />
-          ))}
+          </div>
+          <span className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-background/30">
+            {String(companies.length).padStart(2, "0")}
+          </span>
         </div>
       </div>
     </section>
