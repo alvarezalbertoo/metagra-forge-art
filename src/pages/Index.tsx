@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 
 import { HeroSection } from "@/components/HeroSection";
 import { MarqueeBand } from "@/components/MarqueeBand";
+import { ClientsSection } from "@/components/ClientsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { GlobalPresenceSection } from "@/components/GlobalPresenceSection";
 import { TechSection } from "@/components/TechSection";
@@ -24,6 +25,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <MarqueeBand />
+      <ClientsSection />
       <AboutSection />
       <GlobalPresenceSection />
       <CinematicBleed />
