@@ -1,7 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const companies = [
   "Bosch",
@@ -29,40 +27,8 @@ const companies = [
   "Grupo Renault RVI",
 ];
 
-const getVisibleCount = (width: number) => {
-  if (width >= 1024) return 5;
-  if (width >= 768) return 3;
-  return 2;
-};
-
 export const ClientsSection = () => {
   const { t } = useTranslation();
-  const [index, setIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(5);
-  const [direction, setDirection] = useState(0);
-
-  useEffect(() => {
-    const update = () => setVisibleCount(getVisibleCount(window.innerWidth));
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  const maxIndex = companies.length - visibleCount;
-
-  const prev = useCallback(() => {
-    if (index <= 0) return;
-    setDirection(-1);
-    setIndex((i) => i - 1);
-  }, [index]);
-
-  const next = useCallback(() => {
-    if (index >= maxIndex) return;
-    setDirection(1);
-    setIndex((i) => i + 1);
-  }, [index, maxIndex]);
-
-  const visibleCompanies = companies.slice(index, index + visibleCount);
 
   const stats = [
     { num: "30+", label: t("clients.stat1") },
@@ -70,10 +36,13 @@ export const ClientsSection = () => {
     { num: "20+", label: t("clients.stat3") },
   ];
 
+  // Duplicamos para loop infinito
+  const items = [...companies, ...companies];
+
   return (
-    <section className="bg-foreground text-background py-[120px] px-6 lg:px-[60px] overflow-hidden">
+    <section className="bg-foreground text-background py-[120px] overflow-hidden">
       {/* Encabezado */}
-      <div className="text-center max-w-[780px] mx-auto mb-16">
+      <div className="text-center max-w-[780px] mx-auto mb-16 px-6 lg:px-[60px]">
         <div className="inline-flex items-center gap-3 mb-7 justify-center">
           <span className="w-7 h-[1px] bg-mgaccent" />
           <span className="font-mono text-[0.7rem] tracking-[0.22em] uppercase text-mgaccent">
@@ -97,7 +66,7 @@ export const ClientsSection = () => {
       </div>
 
       {/* Estadísticas */}
-      <div className="grid grid-cols-3 gap-[1px] bg-background/10 max-w-[640px] mx-auto mb-20">
+      <div className="grid grid-cols-3 gap-[1px] bg-background/10 max-w-[640px] mx-auto mb-20 px-6 lg:px-0">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center py-7 px-4 bg-foreground">
             <div
@@ -113,116 +82,84 @@ export const ClientsSection = () => {
         ))}
       </div>
 
-      {/* Carrusel */}
-      <div className="max-w-[1100px] mx-auto">
-        <div className="flex items-center gap-6">
-          {/* Flecha izquierda */}
-          <button
-            onClick={prev}
-            aria-label={t("clients.prevAria", "Ver empresa anterior")}
-            disabled={index === 0}
-            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
-              index === 0
-                ? "opacity-30 pointer-events-none"
-                : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
-            }`}
-          >
-            <ChevronLeft size={20} />
-          </button>
+      {/* Ticker fila 1 — izquierda */}
+      <div className="relative w-full mb-4">
+        {/* Fade izquierda */}
+        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-foreground to-transparent z-10 pointer-events-none" />
+        {/* Fade derecha */}
+        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-foreground to-transparent z-10 pointer-events-none" />
 
-          {/* Lista de nombres */}
-          <div className="flex-1 overflow-hidden">
-            <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-              {visibleCompanies.map((company, i) => (
-                <motion.div
-                  key={company}
-                  custom={direction}
-                  initial={{ opacity: 0, x: direction > 0 ? 80 : -80 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: direction > 0 ? -80 : 80 }}
-                  transition={{
-                    duration: 0.35,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: i * 0.04,
-                  }}
-                  className={`flex items-center justify-between py-5 group cursor-default ${
-                    i < visibleCount - 1 ? "border-b border-background/10" : ""
-                  }`}
+        <div className="flex overflow-hidden">
+          <div
+            className="flex shrink-0 gap-0"
+            style={{
+              animation: "ticker-left 40s linear infinite",
+            }}
+          >
+            {items.map((company, i) => (
+              <div
+                key={`a-${i}`}
+                className="flex items-center shrink-0"
+              >
+                <span
+                  className="font-head font-extrabold uppercase text-background/75 tracking-tight whitespace-nowrap px-8 hover:text-mgaccent transition-colors duration-300 cursor-default"
+                  style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)" }}
                 >
-                  <span
-                    className="font-head font-extrabold uppercase text-background/80 tracking-tight leading-none group-hover:text-mgaccent transition-colors duration-300"
-                    style={{ fontSize: "clamp(1.3rem, 2vw, 1.9rem)" }}
-                  >
-                    {company}
-                  </span>
-                  <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-background/20 group-hover:text-mgaccent/50 transition-colors duration-300 hidden sm:block">
-                    {String(index + i + 1).padStart(2, "0")}
-                  </span>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                  {company}
+                </span>
+                <span className="text-mgaccent/40 text-[1.2rem] shrink-0">·</span>
+              </div>
+            ))}
           </div>
-
-          {/* Flecha derecha */}
-          <button
-            onClick={next}
-            aria-label={t("clients.nextAria", "Ver empresa siguiente")}
-            disabled={index >= maxIndex}
-            className={`hidden md:flex w-12 h-12 rounded-full border border-background/20 items-center justify-center transition-all shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-mgaccent ${
-              index >= maxIndex
-                ? "opacity-30 pointer-events-none"
-                : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
-            }`}
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-
-        {/* Flechas móvil */}
-        <div className="flex md:hidden justify-center gap-4 mt-8">
-          <button
-            onClick={prev}
-            disabled={index === 0}
-            aria-label={t("clients.prevAria", "Ver empresa anterior")}
-            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all ${
-              index === 0
-                ? "opacity-30 pointer-events-none"
-                : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
-            }`}
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={next}
-            disabled={index >= maxIndex}
-            aria-label={t("clients.nextAria", "Ver empresa siguiente")}
-            className={`w-12 h-12 rounded-full border border-background/20 flex items-center justify-center transition-all ${
-              index >= maxIndex
-                ? "opacity-30 pointer-events-none"
-                : "text-background/60 hover:border-mgaccent hover:text-mgaccent"
-            }`}
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-
-        {/* Progreso */}
-        <div className="flex items-center gap-4 justify-center mt-10">
-          <span className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-background/30">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <div className="w-[160px] h-[1px] bg-background/15 relative">
-            <motion.div
-              className="absolute top-0 left-0 h-full bg-mgaccent"
-              animate={{ width: `${((index + visibleCount) / companies.length) * 100}%` }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </div>
-          <span className="font-mono text-[0.62rem] tracking-[0.18em] uppercase text-background/30">
-            {String(companies.length).padStart(2, "0")}
-          </span>
         </div>
       </div>
+
+      {/* Ticker fila 2 — derecha (sentido contrario) */}
+      <div className="relative w-full mt-4">
+        {/* Fade izquierda */}
+        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-foreground to-transparent z-10 pointer-events-none" />
+        {/* Fade derecha */}
+        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-foreground to-transparent z-10 pointer-events-none" />
+
+        <div className="flex overflow-hidden">
+          <div
+            className="flex shrink-0 gap-0"
+            style={{
+              animation: "ticker-right 40s linear infinite",
+            }}
+          >
+            {[...items].reverse().map((company, i) => (
+              <div
+                key={`b-${i}`}
+                className="flex items-center shrink-0"
+              >
+                <span
+                  className="font-head font-extrabold uppercase text-background/40 tracking-tight whitespace-nowrap px-8 hover:text-mgaccent hover:text-background/75 transition-colors duration-300 cursor-default"
+                  style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)" }}
+                >
+                  {company}
+                </span>
+                <span className="text-mgaccent/20 text-[1.2rem] shrink-0">·</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Keyframes */}
+      <style>{`
+        @keyframes ticker-left {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes ticker-right {
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ticker-left, .ticker-right { animation: none; }
+        }
+      `}</style>
     </section>
   );
 };

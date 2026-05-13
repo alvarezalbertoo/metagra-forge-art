@@ -7,7 +7,7 @@ export const MarqueeBand = () => {
   const doubled = [...items, ...items];
 
   return (
-    <div className="bg-mgaccent overflow-hidden py-3.5 relative z-[2]">
+    <div className="bg-mgaccent overflow-hidden py-4 relative z-[2]">
       <motion.div
         className="flex w-max"
         animate={{ x: ["0%", "-50%"] }}
@@ -15,7 +15,7 @@ export const MarqueeBand = () => {
       >
         {doubled.map((item, i) => (
           <span key={i} className="flex items-center">
-            <span className="font-head font-bold text-[0.8rem] tracking-[0.25em] uppercase text-[rgba(255,255,255,0.9)] whitespace-nowrap px-10">
+            <span className="font-head font-bold text-[1.05rem] tracking-[0.25em] uppercase text-[rgba(255,255,255,0.9)] whitespace-nowrap px-10">
               {item}
             </span>
             <span className="text-[rgba(255,255,255,0.4)]">◆</span>
