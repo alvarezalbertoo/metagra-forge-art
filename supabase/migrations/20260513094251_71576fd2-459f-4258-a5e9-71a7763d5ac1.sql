@@ -1,0 +1,1 @@
+REVOKE SELECT ON public.job_applications FROM anon, authenticated;
