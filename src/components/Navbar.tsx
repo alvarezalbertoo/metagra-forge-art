@@ -30,6 +30,7 @@ export const Navbar = () => {
     { label: t("nav.instalaciones", "Instalaciones"), href: "#instalaciones" },
     { label: t("nav.sectores", "Sectores"), href: "#sectores" },
     { label: t("nav.contacto", "Contacto"), href: "#contacto" },
+    { label: t("nav.empleo", "Empleo"), href: "#empleo" },
   ];
 
   useEffect(() => {
