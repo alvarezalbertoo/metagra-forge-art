@@ -14,6 +14,7 @@ import { QualitySection } from "@/components/QualitySection";
 import { CertificacionesSection } from "@/components/CertificacionesSection";
 import { DescargasSection } from "@/components/DescargasSection";
 import { ContactSection } from "@/components/ContactSection";
+import { CareersSection } from "@/components/CareersSection";
 import { BrandClosingSection } from "@/components/BrandClosingSection";
 import { PullQuote } from "@/components/PullQuote";
 import { CinematicBleed } from "@/components/CinematicBleed";
@@ -37,6 +38,7 @@ const Index = () => {
       <CertificacionesSection />
       <DescargasSection />
       <ContactSection />
+      <CareersSection />
       <BrandClosingSection />
       <Footer />
     </>
